@@ -1,7 +1,8 @@
 from flask import Flask
-from models import db,User
+from models import db
+import service.user
 
-app = Flask(__name__) 
+app = Flask(__name__)
 
 POSTGRES = {
     'user': 'postgres',
@@ -12,31 +13,27 @@ POSTGRES = {
 }
 
 app.config['DEBUG'] = True
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
 db.init_app(app)
 
+
 @app.route("/")
 def main():
 
-    result = AddUser()
+    return "Hello World!"
+
+@app.route("/user/add")
+def add_user():
+    result = service.user.AddUser(4,'333333 @sdfsd.com')
     return result
 
-def AddUser():
-    error = "Error occured"
-    try:
-        user = User()
-        user.id = 2 
-        user.name = 'Jalal'
-        user.email = 'jalalk111@uab.edu'
-        user.password = '1'
-        db.session.add(user)
-        db.session.commit()
-        return "User added successfully!!"
-    except:
-        return error
-    return error
 
+@app.route("/user/<id>")
+def get_user(id):
+    result = service.user.GetUserById(int(id))
+    return result.name
 
 
 if __name__ == '__main__':

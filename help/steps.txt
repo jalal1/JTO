@@ -13,7 +13,7 @@
     -pip install flask_script
 9- pip freeze > requirements.txt (to generate the requirements file that shows the version of each package)
 10- Run the following to prepare the database : 
-    - python manage.py db init
+    - python manage.py db init (one time only)
     - python manage.py db migrate
     - python manage.py db upgrade
 11- At this point, a new table called "users" will be create automatically in the db

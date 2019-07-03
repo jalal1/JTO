@@ -27,7 +27,7 @@ class BaseModel(db.Model):
         }
 
 
-class User(BaseModel, db.Model):
+class UserModel(BaseModel, db.Model):
     """Model for the users table"""
     __tablename__ = 'users'
 

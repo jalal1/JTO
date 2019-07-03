@@ -1,0 +1,6 @@
+Flask Tutorial : http://flask.pocoo.org/docs/1.0/tutorial/ 
+Flask-postgres-sqlalchemy-and-alembic : https://realpython.com/flask-by-example-part-1-project-setup/
+neo4j-flask : http://nicolewhite.github.io/neo4j-flask/
+sqlalchemy : https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
+
+Views and templates : http://exploreflask.com/en/latest/templates.html
