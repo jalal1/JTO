@@ -4,5 +4,10 @@
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-/env/*    
-  
+/env/*
+
+
+*.pyc
+__pycache__/
+instance/
+.vscode/
