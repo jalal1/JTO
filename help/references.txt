@@ -4,3 +4,4 @@ neo4j-flask : http://nicolewhite.github.io/neo4j-flask/
 sqlalchemy : https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
 
 Views and templates : http://exploreflask.com/en/latest/templates.html
+Flask Mega Tutorial : https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
