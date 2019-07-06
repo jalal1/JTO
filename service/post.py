@@ -20,3 +20,5 @@ def AddPost(text):
 def GetPostById(id):
     result = PostModel.query.get(id)
     return result
+
+    
