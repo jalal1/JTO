@@ -1,0 +1,16 @@
+- Remove folder or files from git index, but not from your local machine : git rm -r --cached [foldername]
+- Add the installation path ( bin folder) to the windows Path, so you can run "psql" from the command line (https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/)
+- Run these commands : (https://blog.theodo.com/2017/03/developping-a-flask-web-app-with-a-postresql-database-making-all-the-possible-errors/)
+    -No need to the following commands, becuase installing the requirments.txt is enough. 
+    -pip install psycopg2 
+    -pip install Flask-SQLAlchemy
+    -pip install Flask-Migrate
+    -pip install flask_migrate
+    -pip install flask_script
+
+- pip freeze > requirements.txt (to generate the requirements file that shows the version of each package)
+- Initialize your EB CLI : (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html)
+    - eb init
+    - eb creat [app-name]
+    - Exclude pypiwin32 and pywin32 from requirements.txt
+    - eb deploy 

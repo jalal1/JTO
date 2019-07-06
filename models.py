@@ -38,3 +38,13 @@ class UserModel(BaseModel, db.Model):
     created_at = db.Column(db.DateTime)
     modified_at = db.Column(db.DateTime)
 
+class PostModel(BaseModel, db.Model):
+    """Model for the users table"""
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer, primary_key=True) 
+    text = db.Column(db.String(), nullable=False)
+    image_id = db.Column(db.Integer(), nullable=True)
+    created_at = db.Column(db.DateTime)
+    modified_at = db.Column(db.DateTime)
+

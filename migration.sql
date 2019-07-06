@@ -20,5 +20,18 @@ CREATE TABLE users (
 
 INSERT INTO alembic_version (version_num) VALUES ('eafa0f64abd3');
 
+-- Running upgrade eafa0f64abd3 -> a9472850ddac
+
+CREATE TABLE posts (
+    id SERIAL NOT NULL, 
+    text VARCHAR NOT NULL, 
+    image_id INTEGER, 
+    created_at TIMESTAMP WITHOUT TIME ZONE, 
+    modified_at TIMESTAMP WITHOUT TIME ZONE, 
+    PRIMARY KEY (id)
+);
+
+UPDATE alembic_version SET version_num='a9472850ddac' WHERE alembic_version.version_num = 'eafa0f64abd3';
+
 COMMIT;
 

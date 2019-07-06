@@ -1,27 +1,16 @@
-1- Create new folder "JTO", fork the project in Github and clone it 
-2- Create new python enviroment : "python -m venv env" ( for python 3 and above, virtualenv will be installed) (http://flask.pocoo.org/docs/1.0/installation/)
-3- Active the enviroment (by this : env/Scripts/activate.bat or when start debugging using vso), then install Flask : "pip install Flask". 
-4- Intall Postgresql version 10.9 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) 
-5- Add the installation path ( bin folder) to the windows Path, so you can run "psql" from the command line (https://realpython.com/flask-by-example-part-2-postgres-sqlalchemy-and-alembic/)
-6- To login to the superuser : psql -U postgres and the password you entered in the installation
-7- create database JTO using psql command line or from pgadmin 
-8- Run these commands : (https://blog.theodo.com/2017/03/developping-a-flask-web-app-with-a-postresql-database-making-all-the-possible-errors/)
-    -pip install psycopg2 
-    -pip install Flask-SQLAlchemy
-    -pip install Flask-Migrate
-    -pip install flask_migrate
-    -pip install flask_script
-9- pip freeze > requirements.txt (to generate the requirements file that shows the version of each package)
-10- Run the following to prepare the database : 
+- Create new folder "JTO", fork the project in Github and clone it 
+- Create new python enviroment : "python -m venv env" ( for python 3 and above, virtualenv will be installed) (http://flask.pocoo.org/docs/1.0/installation/)
+- Active the enviroment (by this : env/Scripts/activate.bat or when start debugging using vso), then install Flask : "pip install Flask". 
+- pip install -r requirements.txt (install all needed packages)
+- Intall Postgresql version 10.9 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) 
+- To login to the superuser : psql -U postgres and the password you entered in the installation
+- create database JTO using psql command line or from pgadmin 
+- Run the following to prepare the database : 
     - "python manage.py db init" (one time only) # creates the migration folder
     - "python manage.py db migrate"
-    - Choose one of the both options : 
-        - "python manage.py db upgrade --sql > migration.sql" # update the "migration.sql" file with the sql script. Then run manually on the db
-        - "python manage.py db upgrade" # update the db automaticaly
-- Initialize your EB CLI : (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html)
-    - eb init
-    - eb creat [app-name]
-    - Exclude pypiwin32 and pywin32 from requirements.txt
-    - eb deploy 
+        - Choose one of the both options : 
+            - "python manage.py db upgrade --sql > migration.sql" # update the "migration.sql" file with the sql script. Then run manually on the db
+            - "python manage.py db upgrade" # update the db automaticaly
+
 
 
