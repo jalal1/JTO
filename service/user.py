@@ -18,6 +18,7 @@ def AddUser(email):
 
         return "User added successfully!!"
     except Exception as error:
+        db.session.rollback()
         return error
 
 def GetUserById(id):

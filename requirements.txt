@@ -13,6 +13,7 @@ Flask==1.0.3
 Flask-Migrate==2.5.2
 Flask-Script==2.0.6
 Flask-SQLAlchemy==2.4.0
+Flask-WTF==0.14.2
 future==0.16.0
 idna==2.7
 isort==4.3.21
@@ -43,3 +44,4 @@ urllib3==1.24.3
 wcwidth==0.1.7
 Werkzeug==0.15.4
 wrapt==1.11.2
+WTForms==2.2.1

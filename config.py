@@ -3,10 +3,12 @@ import os
 
 class Config(object):
     DEBUG = False
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SECRET_KEY = os.urandom(32)
+
 
 
 class DevelopmentConfig(Config):
-    DEBUG = True
     POSTGRES = {
         'user': 'postgres',
         'pw': '1',
@@ -29,4 +31,3 @@ class ProductionConfig(Config):
     }
     SQLALCHEMY_DATABASE_URI = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
-    SQLALCHEMY_TRACK_MODIFICATIONS = False

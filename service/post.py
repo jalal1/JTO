@@ -15,10 +15,13 @@ def AddPost(text):
 
         return "Post added successfully!!"
     except Exception as error:
+        db.session.rollback()
         return error
 
 def GetPostById(id):
     result = PostModel.query.get(id)
     return result
 
-    
+def UploadImage(id):
+    #upload to s3 code
+    return 'done'
