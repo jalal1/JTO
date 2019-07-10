@@ -1,6 +1,7 @@
 from application import app
 import service.user
 import service.post
+import service.relation
 from flask import render_template
 from forms import PostForm
 
@@ -39,3 +40,8 @@ def upload_image():
     if form.validate_on_submit():
         service.post.UploadImage('1')
     return render_template('upload.html', title='Upload image', form=form)
+
+@app.route("/relation/add/<id1>/<id2>")
+def add_relation(id1,id2):
+    result = service.relation.AddRelation(int(id1),int(id2))
+    return result

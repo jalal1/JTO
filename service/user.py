@@ -11,7 +11,6 @@ def AddUser(email):
         user.name = 'Jalal'
         user.email = email
         user.password = '1'
-        user.created_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
 
         db.session.add(user)
         db.session.commit()

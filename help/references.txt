@@ -5,3 +5,5 @@ sqlalchemy : https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/
 
 Views and templates : http://exploreflask.com/en/latest/templates.html
 Flask Mega Tutorial : https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
+
+social-network-friends-database : https://www.codedodle.com/2014/12/social-network-friends-database.html

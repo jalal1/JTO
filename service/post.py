@@ -8,7 +8,6 @@ def AddPost(text):
     try:
         post = PostModel()
         post.text = text
-        post.created_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
 
         db.session.add(post)
         db.session.commit()
