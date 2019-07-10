@@ -8,3 +8,5 @@ Flask Mega Tutorial : https://blog.miguelgrinberg.com/post/the-flask-mega-tutori
 
 
 github-collaboration :  https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67
+
+Flask-Amazon-S3 : https://kishstats.com/python/2018/03/22/flask-amazon-s3-part-3.html
