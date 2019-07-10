@@ -7,3 +7,7 @@ Views and templates : http://exploreflask.com/en/latest/templates.html
 Flask Mega Tutorial : https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
 
 social-network-friends-database : https://www.codedodle.com/2014/12/social-network-friends-database.html
+
+github-collaboration :  https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67
+
+Flask-Amazon-S3 : https://kishstats.com/python/2018/03/22/flask-amazon-s3-part-3.html

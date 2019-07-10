@@ -2,8 +2,9 @@ from application import app
 import service.user
 import service.post
 import service.relation
-from flask import render_template
+from flask import render_template,request
 from forms import PostForm
+
 
 @app.route("/")
 def main():
@@ -38,7 +39,8 @@ def get_post(id):
 def upload_image():
     form = PostForm()
     if form.validate_on_submit():
-        service.post.UploadImage('1')
+        file = request.files['file']
+        service.post.UploadImage(file)
     return render_template('upload.html', title='Upload image', form=form)
 
 @app.route("/relation/add/<id1>/<id2>")
