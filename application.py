@@ -9,6 +9,7 @@ db.init_app(app)
 import views,errors # adding all the routing from the views.py
 
 
+#example - Orhun 
 
 if __name__ == '__main__':
     app.run()
