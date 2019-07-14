@@ -12,9 +12,9 @@ def main():
     return render_template('index.html')
 
 
-@app.route("/user/add/<email>")
-def add_user(email):
-    result = service.user.AddUser(email)
+@app.route("/user/add/<name>/<email>")
+def add_user(name,email):
+    result = service.user.AddUser(name,email)
     return result
 
 
@@ -44,6 +44,14 @@ def upload_image():
     return render_template('upload.html', title='Upload image', form=form)
 
 @app.route("/relation/add/<id1>/<id2>")
-def add_relation(id1,id2):
-    result = service.relation.AddRelation(int(id1),int(id2))
+def add_friend(id1,id2):
+    # When add a friend, the status is pending
+    result = service.relation.UpdateRelation(int(id1),int(id2),2,int(id1))
     return result
+
+@app.route("/friends/<id>")
+def get_friends(id):
+    # Get friends for id
+    friends = service.relation.GetFriends(int(id))
+    users = service.relation.GetAll(id)
+    return render_template('friends.html',friends=friends,users=users,user=id)

@@ -27,7 +27,7 @@ class BaseModel(db.Model):
         }
 
 
-class UserModel(BaseModel, db.Model):
+class User(BaseModel, db.Model):
     """Model for the users table"""
     __tablename__ = 'users'
 
@@ -39,7 +39,8 @@ class UserModel(BaseModel, db.Model):
     modified_at = db.Column(db.DateTime)
     #relationships = db.relationship('RelationshipModel', lazy='dynamic')
 
-class PostModel(BaseModel, db.Model):
+class Post(BaseModel, db.Model):
+    """Model for the posts table"""
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True) 
@@ -49,10 +50,12 @@ class PostModel(BaseModel, db.Model):
     created_at = db.Column(db.DateTime,index=True, default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
 
-class RelationshipModel(BaseModel, db.Model):
+class Relationship(BaseModel, db.Model):
     """Model for the relationships table"""
     __tablename__ = 'relationships'
-
+    __table_args__ = (
+        db.UniqueConstraint('user1_Id', 'user2_Id', name='unique_user1_Id_user2_Id'),
+    )
     id = db.Column(db.Integer, primary_key=True) 
     user1_Id = db.Column(db.Integer, db.ForeignKey('users.id'))
     user2_Id = db.Column(db.Integer, db.ForeignKey('users.id'))

@@ -1,14 +1,14 @@
-from models import PostModel
+from models import Post
 from models import db
 from datetime import datetime, timezone
 import boto3
 from config import *
-
+import errors
 
 def AddPost(text):
 
     try:
-        post = PostModel()
+        post = Post()
         post.text = text
 
         db.session.add(post)
@@ -16,12 +16,11 @@ def AddPost(text):
 
         return "Post added successfully!!"
     except Exception as error:
-        db.session.rollback()
-        return error
+        return errors.internal_error(error)
 
 
 def GetPostById(id):
-    result = PostModel.query.get(id)
+    result = Post.query.get(id)
     return result
 
 

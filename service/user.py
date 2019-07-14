@@ -1,14 +1,14 @@
-from models import UserModel
+from models import User
 from models import db
 from datetime import datetime, timezone
+import errors
 
-
-def AddUser(email):
+def AddUser(name,email):
 
     try:
-        user = UserModel()
+        user = User()
         #user.id = id
-        user.name = 'Jalal'
+        user.name = name
         user.email = email
         user.password = '1'
 
@@ -17,9 +17,12 @@ def AddUser(email):
 
         return "User added successfully!!"
     except Exception as error:
-        db.session.rollback()
-        return error
+        return errors.internal_error(error)
 
 def GetUserById(id):
-    result = UserModel.query.get(id)
+    result = User.query.get(id)
     return result
+
+def GetAllUsers():
+    restult = User.query.all()
+    return restult

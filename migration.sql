@@ -72,5 +72,11 @@ ALTER TABLE relationships ADD FOREIGN KEY(action_by) REFERENCES users (id);
 
 UPDATE alembic_version SET version_num='60751cde36c9' WHERE alembic_version.version_num = '2c0176db11a7';
 
+-- Running upgrade 60751cde36c9 -> 22dbbad1373d
+
+ALTER TABLE relationships ADD CONSTRAINT "unique_user1_Id_user2_Id" UNIQUE ("user1_Id", "user2_Id");
+
+UPDATE alembic_version SET version_num='22dbbad1373d' WHERE alembic_version.version_num = '60751cde36c9';
+
 COMMIT;
 
