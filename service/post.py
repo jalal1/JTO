@@ -1,28 +1,26 @@
-from models import PostModel
+from models import Post
 from models import db
 from datetime import datetime, timezone
 import boto3
 from config import *
-
+import errors
 
 def AddPost(text):
 
     try:
-        post = PostModel()
+        post = Post()
         post.text = text
-        post.created_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
 
         db.session.add(post)
         db.session.commit()
 
         return "Post added successfully!!"
     except Exception as error:
-        db.session.rollback()
-        return error
+        return errors.internal_error(error)
 
 
 def GetPostById(id):
-    result = PostModel.query.get(id)
+    result = Post.query.get(id)
     return result
 
 
