@@ -42,7 +42,7 @@ def GetFriends(id):
     result = q1.union(q2)
 
     return result
-
+##
 def GetAll(id):
     q1 = db.session.query(User).add_columns(User.id,User.name,Relationship.status).join(
         Relationship, User.id == Relationship.user1_Id).filter(Relationship.user2_Id == id)
