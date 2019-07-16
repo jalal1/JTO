@@ -4,13 +4,24 @@ import service.post
 import service.relation
 from flask import render_template,request
 from forms import PostForm
-
+import json 
 
 @app.route("/")
 def main():
 
     return render_template('index.html')
 
+@app.route("/search",methods=['POST'])
+def search():   
+    users = []
+    content = request.get_json()
+    result = service.user.Search(content['text'])
+    for user in result:
+        users.append(user.name)
+    users_obj = {}
+    users_obj["searchresult"] = users
+    json_data = json.dumps(users_obj)
+    return json_data
 
 @app.route("/user/add/<name>/<email>")
 def add_user(name,email):

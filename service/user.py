@@ -26,3 +26,11 @@ def GetUserById(id):
 def GetAllUsers():
     restult = User.query.all()
     return restult
+
+def Search(text):
+    #result = db.session.query(User).filter(User.name =="jalal")
+    if text:
+        result = db.session.query(User).filter(User.name.like('%'+text+'%'))
+        return result
+    else:
+        return ""
