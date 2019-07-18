@@ -8,8 +8,10 @@ import json
 
 @app.route("/")
 def main():
-
-    return render_template('index.html')
+    #supppose that user 9 is logged in
+    user = get_user(9)
+    
+    return render_template('index.html',currentuser = user)
 
 @app.route("/search",methods=['POST'])
 def search():   
@@ -32,12 +34,12 @@ def add_user(name,email):
 @app.route("/user/<id>")
 def get_user(id):
     result = service.user.GetUserById(int(id))
-    return result.name
+    return result
 
 
-@app.route("/post/add/<text>")
-def add_post(text):
-    result = service.post.AddPost(text)
+@app.route("/post/add/<text>/<userid>")
+def add_post(text,userid):
+    result = service.post.AddPost(text,userid)
     return result
 
 
@@ -60,9 +62,17 @@ def add_friend(id1,id2):
     result = service.relation.UpdateRelation(int(id1),int(id2),2,int(id1))
     return result
 
+
 @app.route("/friends/<id>")
 def get_friends(id):
     # Get friends for id
     friends = service.relation.GetFriends(int(id))
-    users = service.relation.GetAll(id)
-    return render_template('friends.html',friends=friends,users=users,user=id)
+    return render_template('friends.html',friends=friends)
+
+    
+@app.route("/profile/<id>")
+def profile(id):
+    user = service.user.GetUserById(int(id))
+    friends = service.relation.GetFriends(int(id))
+    recentposts = service.post.Getlast10posts(id)
+    return render_template('user-profile.html',currentuser = user,friends = friends,posts = recentposts)

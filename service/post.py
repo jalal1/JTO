@@ -4,12 +4,14 @@ from datetime import datetime, timezone
 import boto3
 from config import *
 import errors
+from sqlalchemy import desc
 
-def AddPost(text):
+def AddPost(text,userid):
 
     try:
         post = Post()
         post.text = text
+        post.user_id = userid
 
         db.session.add(post)
         db.session.commit()
@@ -23,6 +25,9 @@ def GetPostById(id):
     result = Post.query.get(id)
     return result
 
+def Getlast10posts(userid):
+    result = db.session.query(Post).filter(Post.user_id == userid).order_by(desc(Post.created_at)).limit(5).all()
+    return result
 
 def UploadImage(file_to_upload):
     # upload to s3 code
