@@ -28,9 +28,13 @@ def UpdateRelation(id1, id2, status, action_by):
     except Exception as error:
         return errors.internal_error(error)
 
-
-def GetRelation(id):
-    result = ""
+# get a relation between the current user and another user(id)
+def GetRelation(currentuserid,anotheruserid):
+    if currentuserid < anotheruserid:
+        result = db.session.query(Relationship.status).filter(Relationship.user1_Id==currentuserid,Relationship.user2_Id==anotheruserid).all()
+    else:
+        result = db.session.query(Relationship.status).filter(Relationship.user1_Id==anotheruserid,Relationship.user2_Id==currentuserid).all()
+    print(result)
     return result
 
 

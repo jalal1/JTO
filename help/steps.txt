@@ -1,6 +1,6 @@
 - Create new folder "JTO", fork the project in Github and clone it 
 - Create new python enviroment : "python -m venv env" ( for python 3 and above, virtualenv will be installed) (http://flask.pocoo.org/docs/1.0/installation/)
-- Active the enviroment (by this : env/Scripts/activate.bat or when start debugging using vso), then install Flask : "pip install Flask". 
+- Active the enviroment : got to "env/Scripts/" and run "activate.bat" or when start debugging using vso), then install Flask : "pip install Flask". 
 - pip install -r requirements.txt (install all needed packages)
 - Intall Postgresql version 10.9 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) 
 - To login to the superuser : psql -U postgres and the password you entered in the installation

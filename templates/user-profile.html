@@ -36,7 +36,7 @@
             <div class="item">
                 <div class="ui input"><input type="text" placeholder="Search..."></div>
             </div>
-            <a class="item active" href="{{url_for('profile',id=currentuser.id)}}">
+            <a class="item active" href="{{url_for('profile',id=user.id)}}">
                 My Profile
             </a>
             <a class="item" href="index.html">
@@ -62,7 +62,7 @@
             </div>
             <div class="profile-info">
                 <div class="ui segment">
-                    <h1>{{currentuser.name}}</h1>
+                    <h1>{{user.name}}</h1>
                     <span>Loves Fitness and Movies</span>
                 </div>
                 <div class="ui form">
@@ -207,6 +207,9 @@
             </tr>
             {% endfor %}
         </table>
+    </div>
+    <div>
+        <p>The status between {{session['currentusername']}} and {{user.name}} is {{status}}</p>
     </div>
 </body>
 

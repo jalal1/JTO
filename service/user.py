@@ -15,7 +15,7 @@ def AddUser(name,email):
         db.session.add(user)
         db.session.commit()
 
-        return "User added successfully!!"
+        return user
     except Exception as error:
         return errors.internal_error(error)
 
