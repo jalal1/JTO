@@ -38,7 +38,8 @@ def search():
 @app.route("/user/add/<name>/<email>")
 def add_user(name,email):
     result = service.user.AddUser(name,email)
-    return result
+    if result:
+        return "Successfully added!"
 
 
 @app.route("/user/<id>")
