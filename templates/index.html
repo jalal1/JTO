@@ -173,7 +173,20 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <table>
+            <th>username</th>
+            <th>post</th>
+            <th>createdate</th>
+            {% for post in newposts %}
+            <tr>
+                <td>{{post["username"]}}</td>
+                <td>{{post["post"]}}</td>
+                <td>{{post["createdate"]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 
 </html>

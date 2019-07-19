@@ -11,13 +11,17 @@ import test
 
 @app.route("/")
 def main():
-    #supppose that user 9 is logged in
-    user = get_user(1)
+    #supppose that user [9] is logged in
+    user = get_user(9)
     if user:
         session['currentuserid'] = user.id
         session['currentusername'] = user.name
-    
-    return render_template('index.html',currentuser = user)
+
+    # Get friends posts
+    if session.get('currentuserid'):
+        newposts = service.post.GetNewPosts(int(session['currentuserid']))
+
+    return render_template('index.html',currentuser = user,newposts = newposts)
 
 @app.route("/search",methods=['POST'])
 def search():   
@@ -82,7 +86,9 @@ def profile(id):
     # Get the profile for the user using the Id
     user = service.user.GetUserById(int(id))
     # Check the friendship status
-    status = service.relation.GetRelation(int(session['currentuserid']),int(id))
+    
+    if session.get('currentuserid'):
+        status = service.relation.GetRelation(int(session['currentuserid']),int(id))
     # if friends : get friends list and recent posts. 
     if status == 2:
         friends = service.relation.GetFriends(int(id))

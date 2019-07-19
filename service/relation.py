@@ -35,7 +35,8 @@ def GetRelation(currentuserid,anotheruserid):
     else:
         result = db.session.query(Relationship.status).filter(Relationship.user1_Id==anotheruserid,Relationship.user2_Id==currentuserid).all()
     print(result)
-    return result
+    if result:
+        return result[0].status
 
 
 def GetFriends(id):
