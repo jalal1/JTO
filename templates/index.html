@@ -11,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="{{ url_for('static',filename='js/main.js') }}"></script>
     <script src="{{ url_for('static',filename='js/semantic.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/search.js') }}"></script>
 </head>
 
 <body id="home-page">
@@ -34,9 +35,12 @@
     <div class="ui container main-content">
         <div class="ui vertical menu secondary-menu">
             <div class="item">
-                <div class="ui input"><input type="text" placeholder="Search..."></div>
+                <div class="ui input"><input id="search_box" type="text" placeholder="Search..."></div>
+                <div>
+                    <p id="search_result"></p>
+                </div>
             </div>
-            <a class="item" href="user-profile.html">
+            <a class="item" href="{{url_for('profile',id=currentuser.id)}}">
                 My Profile
             </a>
             <a class="item active" href="index.html">
@@ -133,9 +137,7 @@
                             </div>
                         </div>
                         <div class="extra text">
-                            Ours is a life of constant reruns. We're always circling back to where we'd we started, then
-                            starting all over again. Even if we don't run extra laps that day, we surely will come back
-                            for more of the same another day soon.
+                            Ours is a life of constant reruns. We're always circling back to where we'd we started, then starting all over again. Even if we don't run extra laps that day, we surely will come back for more of the same another day soon.
                         </div>
                         <div class="meta">
                             <a class="like">
@@ -171,7 +173,20 @@
             </div>
         </div>
     </div>
-
+    <div>
+        <table>
+            <th>username</th>
+            <th>post</th>
+            <th>createdate</th>
+            {% for post in newposts %}
+            <tr>
+                <td>{{post["username"]}}</td>
+                <td>{{post["post"]}}</td>
+                <td>{{post["createdate"]}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 </body>
 
 </html>

@@ -28,10 +28,15 @@ def UpdateRelation(id1, id2, status, action_by):
     except Exception as error:
         return errors.internal_error(error)
 
-
-def GetRelation(id):
-    result = ""
-    return result
+# get a relation between the current user and another user(id)
+def GetRelation(currentuserid,anotheruserid):
+    if currentuserid < anotheruserid:
+        result = db.session.query(Relationship.status).filter(Relationship.user1_Id==currentuserid,Relationship.user2_Id==anotheruserid).all()
+    else:
+        result = db.session.query(Relationship.status).filter(Relationship.user1_Id==anotheruserid,Relationship.user2_Id==currentuserid).all()
+    print(result)
+    if result:
+        return result[0].status
 
 
 def GetFriends(id):
@@ -42,7 +47,7 @@ def GetFriends(id):
     result = q1.union(q2)
 
     return result
-
+##
 def GetAll(id):
     q1 = db.session.query(User).add_columns(User.id,User.name,Relationship.status).join(
         Relationship, User.id == Relationship.user1_Id).filter(Relationship.user2_Id == id)
