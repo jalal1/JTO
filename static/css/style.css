@@ -5,27 +5,83 @@
 #home-page .ui.vertical.menu.secondary-menu .item:before {
   width: 0;
 }
+#home-page .ui.vertical.menu .active.item {
+  font-weight: 500;
+  border-radius: 8px;
+}
+#home-page .secondary-menu.ui.vertical.menu > .item:first-child {
+  padding: 12px 0;
+}
+#home-page .ui.vertical.menu a.item:hover {
+  border-radius: 8px;
+}
 #home-page .secondary-menu {
-  margin-right: 40px;
   border: none;
   box-shadow: none;
 }
-#home-page .main-content {
-  display: flex;
-  margin-top: 54px;
+#home-page span.title {
+  font-size: 21px;
+  font-weight: 500;
+  display: block;
+  margin: 16px 0;
 }
-#home-page .main-content .news-feed,
-#home-page .main-content .profile-section {
-  width: 100%;
-}
-#home-page .profile-section {
+#home-page .prof-friends {
   display: flex;
 }
-#home-page .profile-section .images-section {
-  margin-right: 40px;
+#home-page .prof-friends .prof-friend {
+  margin-right: 16px;
+  text-align: center;
 }
-#home-page .profile-section .images-section .albums-block {
-  margin-top: 30px;
+#home-page .prof-friends .prof-friend span {
+  font-weight: 400;
+  display: block;
+  margin: 8px 0;
+}
+#home-page .ui.feed .news-feed {
+  margin-bottom: 24px;
+  padding: 16px;
+}
+#home-page .profile-info span {
+  display: block;
+}
+#home-page .profile-info .prof-status {
+  font-weight: 400;
+  margin: 0 0 10px;
+}
+#home-page .profile-info .profile-name {
+  font-size: 19px;
+  line-height: 25px;
+  font-weight: 400;
+}
+#home-page .profile-info .profile-status {
+  margin: 8px 0;
+}
+#home-page .profile-info .profile-details {
+  margin-bottom: 20px;
+  display: flex;
+}
+#home-page .profile-info .profile-details .prof-text {
+  min-width: 165px;
+}
+#home-page .profile-info .profile-details .prof-text span {
+  min-height: 24px;
+  color: #828282;
+}
+#home-page .profile-info .profile-details .prof-data span {
+  min-height: 24px;
+  color: #333;
+}
+#home-page .profile-info .prof-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#home-page .profile-info .prof-stats .value {
+  font-size: 35px !important;
+  font-weight: 300;
+}
+#home-page .profile-info .prof-stats .label {
+  font-weight: 400;
 }
 
 #login-page .main-content {
@@ -43,7 +99,10 @@
 #login-page .main-content .login-section {
   padding: 34px 50px 50px;
 }
-#login-page .ui.stacked.segment:after, #login-page .ui.stacked.segment:before, #login-page .ui.stacked.segments:after, #login-page .ui.stacked.segments:before {
+#login-page .ui.stacked.segment:after,
+#login-page .ui.stacked.segment:before,
+#login-page .ui.stacked.segments:after,
+#login-page .ui.stacked.segments:before {
   height: 4px;
 }
 

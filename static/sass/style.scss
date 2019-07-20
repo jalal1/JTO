@@ -7,31 +7,102 @@
     .ui.vertical.menu.secondary-menu .item:before {
         width: 0;
     }
+    .ui.vertical.menu .active.item{
+        font-weight: 500;
+        border-radius: 8px;
+    }
+    .secondary-menu.ui.vertical.menu>.item:first-child{
+        padding: 12px 0;
+    }
+    .ui.vertical.menu a.item:hover{
+        border-radius: 8px;
+    }
 
     .secondary-menu {
-        margin-right: 40px;
         border: none;
         box-shadow: none;
     }
 
-    .main-content {
-        display: flex;
-        margin-top: 54px;
+    span.title{
+        font-size: 21px;
+        font-weight: 500;
+        display: block;
+        margin: 16px 0;
+    }
 
-        .news-feed,
-        .profile-section {
-            width: 100%;
+    .prof-friends{
+        display: flex;
+
+        .prof-friend{
+            margin-right: 16px;
+            text-align: center;
+
+            span{
+                font-weight: 400;
+                display: block;
+                margin: 8px 0;
+            }
         }
     }
 
-    .profile-section {
-        display: flex;
+    .ui.feed .news-feed{
+        margin-bottom: 24px;
+        padding: 16px;
+    }
 
-        .images-section {
-            margin-right: 40px;
 
-            .albums-block {
-                margin-top: 30px;
+    .profile-info {
+        span {
+            display: block;
+        }
+        .prof-status{
+            font-weight: 400;
+            margin: 0 0 10px;
+        }
+
+        .profile-name {
+            font-size: 19px;
+            line-height: 25px;
+            font-weight: 400;
+        }
+
+        .profile-status {
+            margin: 8px 0;
+        }
+
+        .profile-details {
+            margin-bottom: 20px;
+            display: flex;
+
+            .prof-text {
+                min-width: 165px;
+
+                span {
+                    min-height: 24px;
+                    color: #828282;
+                }
+            }
+
+            .prof-data {
+                span{
+                    min-height: 24px;
+                    color: #333;
+                }
+            }
+        }
+
+        .prof-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .value {
+                font-size: 35px !important;
+                font-weight: 300;
+            }
+
+            .label {
+                font-weight: 400;
             }
         }
     }
@@ -41,21 +112,26 @@
     .main-content {
         display: flex;
 
-        & > div {
+        &>div {
             flex-basis: 100%;
         }
 
-        .website-info{
+        .website-info {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 34px 50px 50px;
         }
-        .login-section{
+
+        .login-section {
             padding: 34px 50px 50px;
         }
     }
-    .ui.stacked.segment:after, .ui.stacked.segment:before, .ui.stacked.segments:after, .ui.stacked.segments:before{
+
+    .ui.stacked.segment:after,
+    .ui.stacked.segment:before,
+    .ui.stacked.segments:after,
+    .ui.stacked.segments:before {
         height: 4px;
     }
 }

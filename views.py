@@ -12,7 +12,7 @@ import test
 @app.route("/")
 def main():
     #supppose that user [9] is logged in
-    user = get_user(9)
+    user = get_user(1)
     if user:
         session['currentuserid'] =  user.id
         session['currentusername'] = user.name
