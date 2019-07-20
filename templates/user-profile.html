@@ -4,10 +4,20 @@
 
 
 <div class="profile-section thirteen wide column">
-    <div class="ui two column grid">
-        <div class="images-section column">
-            <img class="ui small circular image" src="/static/images/img.jpg">
-            <h2>Albums</h2>
+    <div class="ui grid">
+        <div class="images-section six wide column">
+            <img class="ui small image" src="/static/images/img.jpg">
+            <span class="title">Friends</span>
+            <div class="prof-friends">
+                {% for friend in friends %}
+                <div class="prof-friend">
+                    <img class="ui tiny circular image" src="/static/images/img.jpg">
+                    <span class="friend-name">{{friend.name}}</span>
+                </div>
+                {% endfor %}
+
+            </div>
+            <span class="title">Albums</span>
             <div class="ui tiny images albums-block">
                 <img class="ui image" src="/static/images/img.jpg">
                 <img class="ui image" src="/static/images/img.jpg">
@@ -15,98 +25,84 @@
                 <img class="ui image" src="/static/images/img.jpg">
             </div>
         </div>
-        <div class="profile-info column">
+        <div class="profile-info ten wide column">
             <div class="ui segment">
-                <h1>{{user.name}}</h1>
-                <span>Loves Fitness and Movies</span>
+                <span class='profile-name'>{{user.name}}</span>
+                <span class="profile-status">Loves Fitness and Movies</span>
+
+                <span class="prof-status">
+                    {% if session['currentusername'] == user.name %}
+                    My Profile
+                    {% else %}
+                    You are friends
+                    {% endif %}
+                </span>
+                <div class="profile-details">
+                    <div class="prof-text">
+                        <span>Birthday</span>
+                        <span>Current city</span>
+                        <span>Interests</span>
+                        <span>Languages</span>
+                    </div>
+                    <div class="prof-data">
+                        <span>{{user.name}}</span>
+                        <span>{{user.name}}</span>
+                        <span>{{user.name}}</span>
+                        <span>{{user.name}}</span>
+                    </div>
+                </div>
+                <div class="prof-stats ui statistics">
+                    <div class="statistic">
+                        <div class="value">
+                            22
+                        </div>
+                        <div class="label">
+                            Friends
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            80
+                        </div>
+                        <div class="label">
+                            Weight(kg)
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            180
+                        </div>
+                        <div class="label">
+                            Height(cm)
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="ui form">
                 <div class="field">
                     <label>What's new?</label>
                     <textarea rows="2"></textarea>
                 </div>
+                <button class="ui small green button">Submit</button>
+
             </div>
+            <span class="title">My News Feed</span>
+
             <div class="ui feed segment">
+                {% for post in posts %}
                 <div class="event">
                     <div class="label">
-                        <img src="../images/img.jpg">
+                        <img src="/static/images/img.jpg">
                     </div>
                     <div class="content">
                         <div class="summary">
-                            <a class="user">
-                                Elliot Fu
-                            </a> added you as a friend
-                            <div class="date">
-                                1 Hour Ago
-                            </div>
-                        </div>
-                        <div class="meta">
-                            <a class="like">
-                                4 Likes
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="label">
-                        <img src="../images/img.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="summary">
-                            <a>Helen Troy</a> added <a>2 new illustrations</a>
-                            <div class="date">
-                                4 days ago
-                            </div>
-                        </div>
-                        <div class="extra images">
-                            <a> <img src="../images/img.jpg">
-                            </a>
-                            <a> <img src="../images/img.jpg">
-                            </a>
-                        </div>
-                        <div class="meta">
-                            <a class="like">
-                                1 Like
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="label">
-                        <img src="../images/img.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="summary">
-                            <a class="user">
-                                Jenny Hess
-                            </a> added you as a friend
-                            <div class="date">
-                                2 Days Ago
-                            </div>
-                        </div>
-                        <div class="meta">
-                            <a class="like">
-                                8 Likes
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="event">
-                    <div class="label">
-                        <img src="../images/img.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="summary">
-                            <a>Joe Henderson</a> posted on his page
+                            <a>{{user.name}}</a> posted on his page
                             <div class="date">
                                 3 days ago
                             </div>
                         </div>
                         <div class="extra text">
-                            Ours is a life of constant reruns. We're always circling back to where we'd we started, then
-                            starting all over again. Even if we don't run extra laps that day, we surely will come back
-                            for
-                            more of the same another day soon.
+                            {{post.text}}
                         </div>
                         <div class="meta">
                             <a class="like">
@@ -115,57 +111,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="event">
-                    <div class="label">
-                        <img src="../images/img.jpg">
-                    </div>
-                    <div class="content">
-                        <div class="summary">
-                            <a>Justen Kitsune</a> added <a>2 new photos</a> of you
-                            <div class="date">
-                                4 days ago
-                            </div>
-                        </div>
-                        <div class="extra images">
-                            <a> <img src="../images/img.jpg">
-                            </a>
-                            <a> <img src="../images/img.jpg">
-                            </a>
-                        </div>
-                        <div class="meta">
-                            <a class="like">
-                                41 Likes
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-            <div>
-                <table>
-                    <th>Id</th>
-                    <th>Name</th>
-                    {% for friend in friends %}
-                    <tr>
-                        <td>{{friend.id}}</td>
-                        <td>{{friend.name}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <div>
-                <table>
-                    <th>Id</th>
-                    <th>Name</th>
-                    {% for post in posts %}
-                    <tr>
-                        <td>{{post.text}}</td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
-            <div>
-                <p>The status between {{session['currentusername']}} and {{user.name}} is {{status}}</p>
-            </div>
+
         </div>
     </div>
 </div>

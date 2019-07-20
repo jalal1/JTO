@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template, request, url_for, redirect
 from models import db
 from config import *
 
@@ -9,8 +9,11 @@ db.init_app(app)
 
 import views,errors # adding all the routing from the views.py
 
-if __name__ == '__main__':
-    app.config['TEMPLATES_AUTO_RELOAD'] = True
-    app.run()
+if __name__ == '__main__':    
+    app.config['TEMPLATES_AUTO_RELOAD'] = True      
+    app.jinja_env.auto_reload = True
+    app.run(debug=True)
+
+    
     
 
