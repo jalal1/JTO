@@ -78,5 +78,17 @@ ALTER TABLE relationships ADD CONSTRAINT "unique_user1_Id_user2_Id" UNIQUE ("use
 
 UPDATE alembic_version SET version_num='22dbbad1373d' WHERE alembic_version.version_num = '60751cde36c9';
 
+-- Running upgrade 22dbbad1373d -> 670ea5c6d6b0
+
+ALTER TABLE posts ADD COLUMN likes INTEGER;
+
+UPDATE alembic_version SET version_num='670ea5c6d6b0' WHERE alembic_version.version_num = '22dbbad1373d';
+
+-- Running upgrade 670ea5c6d6b0 -> c64e2c7405ae
+
+ALTER TABLE posts ALTER COLUMN likes SET NOT NULL;
+
+UPDATE alembic_version SET version_num='c64e2c7405ae' WHERE alembic_version.version_num = '670ea5c6d6b0';
+
 COMMIT;
 

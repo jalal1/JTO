@@ -65,3 +65,14 @@ def UploadImage(file_to_upload):
     #s3_client.upload_fileobj(file_to_upload, Config.S3_BUCKET,file_to_upload.filename)
 
     return 'done'
+
+
+def LikePost(postid):
+    post = db.session.query(Post).get(postid)
+    if post:
+        post.likes= post.likes + 1
+        try:
+            db.session.commit()
+            return "likes +1"
+        except Exception as error:
+            return errors.internal_error(error)
