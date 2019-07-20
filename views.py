@@ -88,16 +88,30 @@ def profile(id):
     user = service.user.GetUserById(int(id))
     # Check the friendship status
     
+    
     if session.get('currentuserid'):
-        status = service.relation.GetRelation(int(session['currentuserid']),int(id))
-    # if friends : get friends list and recent posts. 
-    if status == 2:
-        friends = service.relation.GetFriends(int(id))
-        recentposts = service.post.Getlast10posts(id)
+        # get my friend's profile
+        if int(session.get('currentuserid')) != int(id): 
+            status = service.relation.GetRelation(int(session['currentuserid']),int(id))
+            if status == 2:
+                friends = service.relation.GetFriends(int(id))
+                recentposts = service.post.Getlast10posts(id)
+        else:
+            # it means this is my profile
+                friends = service.relation.GetFriends(int(id))
+                recentposts = service.post.Getlast10posts(id)
+
+
     # else : show user name, button with status, either "add friend" or "pending"
     return render_template('user-profile.html',user = user,friends = friends,posts = recentposts,status=status)
 
 @app.route("/test/load")
 def load():
     result = test.loadtestdata()
+    return result
+
+
+@app.route("/post/like/<postid>")
+def likepost(postid):
+    result = service.post.LikePost(postid)
     return result

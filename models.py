@@ -49,6 +49,7 @@ class Post(BaseModel, db.Model):
     image_id = db.Column(db.Integer(), nullable=True)
     created_at = db.Column(db.DateTime,index=True, default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
+    likes = db.Column(db.Integer(), nullable=False,default = 0)
 
 class Relationship(BaseModel, db.Model):
     """Model for the relationships table"""
