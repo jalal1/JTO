@@ -17,10 +17,6 @@ html{
   box-shadow: none;
 }
 
-#home-page .main-content .news-feed,
-#home-page .main-content .profile-section {
-  width: 100%;
-}
 
 #home-page .profile-section .images-section .albums-block {
   margin-top: 30px;

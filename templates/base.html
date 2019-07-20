@@ -35,7 +35,8 @@
             <div class="item">
                 <div class="ui input"><input type="text" placeholder="Search..."></div>
             </div>
-            <a class="item active" href="{{url_for('profile',id=user.id)}}">
+            
+            <a class="item active" {%- if request.path=="/" %} href="{{url_for('profile',id=currentuser.id)}}" {%- else %} href="{{url_for('profile',id=user.id)}}" {% endif %}>
                 My Profile
             </a>
             <a class="item" href="index.html">
