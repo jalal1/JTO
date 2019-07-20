@@ -14,7 +14,7 @@ def main():
     #supppose that user [9] is logged in
     user = get_user(9)
     if user:
-        session['currentuserid'] = user.id
+        session['currentuserid'] =  user.id
         session['currentusername'] = user.name
 
     # Get friends posts
@@ -67,10 +67,21 @@ def upload_image():
         service.post.UploadImage(file)
     return render_template('upload.html', title='Upload image', form=form)
 
-@app.route("/relation/add/<id1>/<id2>")
-def add_friend(id1,id2):
-    # When add a friend, the status is pending
-    result = service.relation.UpdateRelation(int(id1),int(id2),2,int(id1))
+@app.route("/relation/add/<id>")
+def add_friend(id):
+    # check the status between them first
+    if session['currentuserid']:
+        status = service.relation.GetRelationStatus(int(session['currentuserid']),int(id))
+        # if not friends nor pending, then the status will be pending : 1 
+        if status == 0 :
+            result = service.relation.UpdateRelation(int(session['currentuserid']),int(id),1,int(session['currentuserid']))
+            result = "Pending"
+        elif status ==1 : 
+            result = "Status is already pending!"
+        elif status ==2:
+             result = "We are friends!"
+            
+    
     return result
 
 
@@ -88,21 +99,36 @@ def profile(id):
     user = service.user.GetUserById(int(id))
     # Check the friendship status
     
-    
     if session.get('currentuserid'):
         # get my friend's profile
+        # if logged-in user's id is not the same as the profile id, it means not my profile
         if int(session.get('currentuserid')) != int(id): 
-            status = service.relation.GetRelation(int(session['currentuserid']),int(id))
-            if status == 2:
-                friends = service.relation.GetFriends(int(id))
-                recentposts = service.post.Getlast10posts(id)
+            relation = service.relation.GetRelation(int(session['currentuserid']),int(id))
+            if relation:
+                if relation.status == 2:
+                    status = "Friends"
+                    # it means we are friends, so we get the friends list, and recent posts
+                    friends = service.relation.GetFriends(int(id))
+                    recentposts = service.post.Getlast10posts(int(id))
+                # if pending, and the action done by profile user id, then I can accept or not.
+                elif relation.status == 1 and relation.action_by ==id:
+                    status = "Accept/Delete"
+                # if pending, and the action by me, then just show "Pending"
+                elif relation.status == 1 and relation.action_by == int(session['currentuserid']):
+                    status = "Pending"
+                elif relation.status == 0:
+                    status = "Add Friend"
+            else:
+                status = "No Relation!"
+                
+
+
         else:
             # it means this is my profile
-                friends = service.relation.GetFriends(int(id))
-                recentposts = service.post.Getlast10posts(id)
-
-
-    # else : show user name, button with status, either "add friend" or "pending"
+            status = "Me"
+            friends = service.relation.GetFriends(int(id))
+            recentposts = service.post.Getlast10posts(int(id))
+                
     return render_template('user-profile.html',user = user,friends = friends,posts = recentposts,status=status)
 
 @app.route("/test/load")

@@ -73,6 +73,6 @@ def LikePost(postid):
         post.likes= post.likes + 1
         try:
             db.session.commit()
-            return "likes +1"
+            return post.likes
         except Exception as error:
             return errors.internal_error(error)

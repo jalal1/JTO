@@ -24,20 +24,29 @@ def UpdateRelation(id1, id2, status, action_by):
         db.session.add(relation)
         db.session.commit()
 
-        return "relation added successfully!!"
+        return "relation updated successfully!!"
     except Exception as error:
         return errors.internal_error(error)
 
-# get a relation between the current user and another user(id)
-def GetRelation(currentuserid,anotheruserid):
+# get a relation status between the current user and another user(id)
+def GetRelationStatus(currentuserid,anotheruserid):
     if currentuserid < anotheruserid:
         result = db.session.query(Relationship.status).filter(Relationship.user1_Id==currentuserid,Relationship.user2_Id==anotheruserid).all()
     else:
         result = db.session.query(Relationship.status).filter(Relationship.user1_Id==anotheruserid,Relationship.user2_Id==currentuserid).all()
-    print(result)
+    #print(result)
     if result:
         return result[0].status
 
+# get a relation between the current user and another user(id)
+def GetRelation(currentuserid,anotheruserid):
+    if currentuserid < anotheruserid:
+        result = db.session.query(Relationship).filter(Relationship.user1_Id==currentuserid,Relationship.user2_Id==anotheruserid).all()
+    else:
+        result = db.session.query(Relationship).filter(Relationship.user1_Id==anotheruserid,Relationship.user2_Id==currentuserid).all()
+    #print(result)
+    if result:
+        return result[0]
 
 def GetFriends(id):
     q1 = db.session.query(User).join(
