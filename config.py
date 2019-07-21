@@ -2,8 +2,6 @@ import os
 
 
 class Config(object):
-    DEBUG = False
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.urandom(32)
 
     S3_BUCKET = os.environ.get("S3_BUCKET")
