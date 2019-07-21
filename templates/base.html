@@ -35,11 +35,11 @@
             <div class="item">
                 <div class="ui input"><input type="text" placeholder="Search..."></div>
             </div>
-            
-            <a class="item {%- if request.path!="/" %} active {% endif %}" {%- if request.path=="/" %} href="{{url_for('profile',id=currentuser.id)}}" {%- else %} href="{{url_for('profile',id=user.id)}}" {% endif %}>
+
+            <a class="item {%- if request.path!=" / " %} active {% endif %}" {%- if request.path=="/" %} href="{{url_for('profile',id=currentuser.id)}}" {%- else %} href="{{url_for('profile',id=currentuser.id)}}" {% endif %}>
                 My Profile
             </a>
-            <a class="item {%- if request.path=="/" %} active {% endif %}" href="/">
+            <a class="item {%- if request.path==" / " %} active {% endif %}" href="/">
                 News
             </a>
             <a class="item">
