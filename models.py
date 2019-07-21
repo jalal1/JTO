@@ -7,7 +7,7 @@ from flask_login import UserMixin
 db = SQLAlchemy()  
 
 
-class BaseModel(db.Model):
+class BaseModel(db.Model,UserMixin):
     """Base data model for all objects"""
     __abstract__ = True
 
@@ -39,9 +39,7 @@ class BaseModel(db.Model):
  #and extends the behavior of the latter function 
  #'without explicitly modifying it'''
 
-#@login_manager.user_loader #decorator 
-#def load_user(user_id):
-#    return User.query.get(int(user_id))
+
 
 
 

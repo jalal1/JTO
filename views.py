@@ -5,16 +5,12 @@ import service.relation
 from flask import render_template,request,url_for, flash, redirect
 from forms import PostForm, RegistrationForm,LoginForm
 from models import User, Post
-from flask_login import login_user, current_user, logout_user
-
-
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 @app.route("/")
 def main():
-
     return render_template('index.html')
-
 
 
 @app.route("/user/add/<name>/<email>")
@@ -63,8 +59,8 @@ def get_friends(id):
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return render_template('index.html')
+    #if current_user.is_authenticated:
+        #return render_template('index.html')
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -95,3 +91,8 @@ def register():
 def logout():
         logout_user()
         return render_template('index.html')
+
+@app.route("/account")
+@login_required
+def account():
+    return render_template('account.html', title='Account', form=form)
