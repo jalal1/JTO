@@ -14,19 +14,8 @@ from flask_login import login_user, current_user, logout_user
 
 @app.route("/")
 def main():
-    #supppose that user [9] is logged in
-    user = newposts = ""
-    user = get_user(1)
-    if user:
-        session['currentuserid'] =  user.id
-        session['currentusername'] = user.name
 
-    # Get friends posts
-    if session.get('currentuserid'):
-        newposts = service.post.GetNewPosts(int(session['currentuserid']),session['currentusername'])
-    
-
-    return render_template('index.html',currentuser = user,newposts = newposts)
+    return redirect(url_for('login'))
 
 @app.route("/search",methods=['POST'])
 def search():   
@@ -159,6 +148,7 @@ def like():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    
     if current_user.is_authenticated:
         return render_template('index.html')
     form = LoginForm()
@@ -168,16 +158,15 @@ def login():
             login_user(user,remember=form.remember.data)
             session['currentuserid'] = user.id
             session['currentusername'] = user.name
-            print(session['currentuserid'])
-            newposts = GetRecentPosts()
-            return render_template('index.html', title='home', form=form,currentuser = user,newposts = newposts)
+
+            return render_template('index.html', title='home',user="" ,form=form,currentuser = user,newposts = GetRecentPosts())
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login2.html', title='Login', form=form)
 
 def GetRecentPosts():
-    print(session['currentuserid'])
-    newposts = service.post.GetNewPosts(int(session['currentuserid']),session['currentusername'])
+    #print(session['currentuserid'])
+    newposts = service.post.GetNewPosts(current_user.id,current_user.name)
     return newposts
 
 @app.route("/register", methods=['GET', 'POST'])    

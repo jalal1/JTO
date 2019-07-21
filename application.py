@@ -3,6 +3,7 @@ from models import db # problem here
 from config import *
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
+from models import User
 
 application = app = Flask(__name__) # application variable is needed when deploy to AWS
 app.config.from_object(DevelopmentConfig)
@@ -11,6 +12,9 @@ bcrypt = Bcrypt(app) # to encrypt passwords
 
 login_manager = LoginManager(app) 
 login_manager.init_app(app)
+@login_manager.user_loader
+def load_user(user_id):
+     return User.query.get(user_id)
 
 
 import views,errors # adding all the routing from the views.py
