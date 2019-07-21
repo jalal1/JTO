@@ -14,9 +14,8 @@ from flask_login import login_user, current_user, logout_user
 
 @app.route("/")
 def main():
-
-    return redirect(url_for('login'))
-
+    return render_template('index.html', title='home',user="user" ,form="form",currentuser = "user",newposts = GetRecentPosts())
+    
 @app.route("/search",methods=['POST'])
 def search():   
     users = []
@@ -149,8 +148,7 @@ def like():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     
-    if current_user.is_authenticated:
-        return render_template('index.html')
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -159,9 +157,12 @@ def login():
             session['currentuserid'] = user.id
             session['currentusername'] = user.name
 
-            return render_template('index.html', title='home',user="" ,form=form,currentuser = user,newposts = GetRecentPosts())
+            return render_template('index.html', title='home',user=user ,form=form,currentuser = user,newposts = GetRecentPosts())
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
+
+    if current_user.is_authenticated:
+        return render_template('index.html', title='home',user=user ,form=form,currentuser = user,newposts = GetRecentPosts())
     return render_template('login2.html', title='Login', form=form)
 
 def GetRecentPosts():

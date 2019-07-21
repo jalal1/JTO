@@ -33,10 +33,10 @@
     <div class="ui container main-content ui grid">
         <div class="ui vertical menu secondary-menu three wide column">
             <div class="item">
-                <div class="ui input"><input type="text" placeholder="Search..."></div>
+                <div class="ui input"><input type="text" id="search_box" placeholder="Search..."></div>
             </div>
 
-            <a class="item {%- if request.path!=" / " %} active {% endif %}" {%- if request.path=="/" %} href="{{url_for('profile',id=currentuser.id)}}" {%- else %} href="{{url_for('profile',id=user.id)}}" {% endif %}>
+            <a class="item {%- if request.path!=" / " %} active {% endif %}" {%- if request.path=="/" %} href="{{url_for('profile',id=user.id)}}" {%- else %} href="{{url_for('profile',id=user.id)}}" {% endif %}>
                 My Profile
             </a>
             <a class="item {%- if request.path==" / " %} active {% endif %}" href="/">
@@ -49,6 +49,7 @@
                 Photos
             </a>
         </div>
+        <div class="searcj" id="search_result">?asd</div>
         {% block content %}{% endblock %}
     </div>
 
