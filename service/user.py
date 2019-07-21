@@ -15,7 +15,7 @@ def AddUser(name,email):
         db.session.add(user)
         db.session.commit()
 
-        return "User added successfully!!"
+        return user
     except Exception as error:
         return errors.internal_error(error)
 
@@ -26,3 +26,10 @@ def GetUserById(id):
 def GetAllUsers():
     restult = User.query.all()
     return restult
+
+def Search(text):
+    if text:
+        result = db.session.query(User).filter(User.name.like('%'+text+'%'))
+        return result
+    else:
+        return ""

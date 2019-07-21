@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/semantic.min.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/semantic.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/search.js') }}"></script>
+</head>
+
+<body id="home-page">
+    <div class="ui inverted menu header-menu">
+        <a href="index.html" class="header item">
+            JTO (Fitness Social Network)
+        </a>
+        <div class="ui simple right aligned dropdown item">
+            Tima <i class="dropdown icon"></i>
+            <div class="menu">
+                <a class="item" href="#">Link Item</a>
+                <a class="item" href="#">Link Item</a>
+                <div class="divider"></div>
+                <div class="header">Header Item</div>
+                <a class="item" href="#">Link Item</a>
+            </div>
+        </div>
+    </div>
+    <div class="ui container main-content ui grid">
+        <div class="ui vertical menu secondary-menu three wide column">
+            <div class="item">
+                <div class="ui input"><input type="text" placeholder="Search..."></div>
+            </div>
+
+            <a class="item {%- if request.path!=" / " %} active {% endif %}" {%- if request.path=="/" %} href="{{url_for('profile',id=currentuser.id)}}" {%- else %} href="{{url_for('profile',id=user.id)}}" {% endif %}>
+                My Profile
+            </a>
+            <a class="item {%- if request.path==" / " %} active {% endif %}" href="/">
+                News
+            </a>
+            <a class="item">
+                Friends
+            </a>
+            <a class="item">
+                Photos
+            </a>
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+
+
+</body>
+
+</html>

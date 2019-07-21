@@ -1,27 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Upload image</title>
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/semantic.min.css') }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
-    <script src="{{ url_for('static',filename='js/semantic.min.js') }}"></script>
-</head>
+{% block content %}
+<h2>{{ title }}</h2>
 
-<body>
-    <h2>{{ title }}</h2>
-    <form action="" method="post" novalidate enctype="multipart/form-data">
-        {{ form.hidden_tag() }}
-        <p><input type="file" name="file"></p>
-        <p>{{ form.text.label }} <br> {{ form.text(size=14) }} <br>
-            <p>{{ form.upload() }}</p>
-        </p>
-    </form>
-</body>
-
-</html>
+<form action="" method="post" novalidate enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <p><input type="file" name="file"></p>
+    <p>{{ form.text.label }} <br> {{ form.text(size=14) }} <br>
+        <p>{{ form.upload() }}</p>
+    </p>
+</form>
+{% endblock %}
