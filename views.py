@@ -12,6 +12,7 @@ import test
 @app.route("/")
 def main():
     #supppose that user [9] is logged in
+    user = newposts = ""
     user = get_user(1)
     if user:
         session['currentuserid'] =  user.id
@@ -19,7 +20,8 @@ def main():
 
     # Get friends posts
     if session.get('currentuserid'):
-        newposts = service.post.GetNewPosts(int(session['currentuserid']))
+        newposts = service.post.GetNewPosts(int(session['currentuserid']),session['currentusername'])
+    
 
     return render_template('index.html',currentuser = user,newposts = newposts)
 
@@ -137,7 +139,14 @@ def load():
     return result
 
 
-@app.route("/post/like/<postid>")
-def likepost(postid):
-    result = service.post.LikePost(postid)
-    return result
+
+@app.route("/like",methods=['POST'])
+def like():   
+
+    content = request.get_json()
+    likes = service.post.LikePost(int(content['postid']))
+    likes_obj = {}
+    likes_obj["likes"] = likes
+    likes_obj["postid"] = content['postid']
+    json_data = json.dumps(likes_obj)
+    return json_data

@@ -1,6 +1,5 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
 <div class="news-feed thirteen wide column">
     <div class="ui form">
         <div class="field">
@@ -10,14 +9,14 @@
         <button class="ui small green button">Submit</button>
     </div>
     <div class="ui feed">
-        <span class="title">News Feed</span>
-        {% for post in newposts %}
+        <span class="title">News Feed</span> {% for post in newposts %}
         <div class="news-feed event ui segment">
             <div class="label">
                 <img src="/static/images/img.jpg">
             </div>
             <div class="content">
                 <div class="summary">
+                    <input id="postid" type="hidden" value='{{post["postid"]}}'>
                     <a>{{post["username"]}}</a> posted on his page
                     <div class="date">
                         {{post["createdate"]}}
@@ -27,9 +26,10 @@
                     {{post["post"]}}
                 </div>
                 <div class="meta">
-                    <a class="like">
-                        5 Likes
+                    <a class="like_{{post.postid}}">
+                        {{post["likes"]}} Likes
                     </a>
+                    <button id="{{post.postid}}" class="likebutton">like</button>
                 </div>
             </div>
         </div>
