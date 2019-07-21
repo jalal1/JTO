@@ -83,7 +83,9 @@ def add_friend(id):
 def get_friends(id):
     # Get friends for id
     friends = service.relation.GetFriends(int(id))
-    return render_template('friends.html',friends=friends)
+    if session['currentusername']:
+        user = session['currentusername']
+    return render_template('friends.html',friends=friends,user=user)
 
     
 @app.route("/profile/<id>")
