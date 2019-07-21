@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-import datetime
+from datetime import datetime
 
 db = SQLAlchemy()  
 
@@ -27,24 +27,40 @@ class BaseModel(db.Model):
         }
 
 
-class UserModel(BaseModel, db.Model):
+class User(BaseModel, db.Model):
     """Model for the users table"""
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True) 
-    name = db.Column(db.String(128), nullable=False)
-    email = db.Column(db.String(128), unique=True, nullable=False)
+    name = db.Column(db.String(128), index=True, nullable=False)
+    email = db.Column(db.String(128), index=True, unique=True, nullable=False)
     password = db.Column(db.String(128), nullable=True)
-    created_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime,default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
+    #relationships = db.relationship('RelationshipModel', lazy='dynamic')
 
-class PostModel(BaseModel, db.Model):
-    """Model for the users table"""
+class Post(BaseModel, db.Model):
+    """Model for the posts table"""
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer, primary_key=True) 
     text = db.Column(db.String(), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     image_id = db.Column(db.Integer(), nullable=True)
-    created_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime,index=True, default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
 
+class Relationship(BaseModel, db.Model):
+    """Model for the relationships table"""
+    __tablename__ = 'relationships'
+    __table_args__ = (
+        db.UniqueConstraint('user1_Id', 'user2_Id', name='unique_user1_Id_user2_Id'),
+    )
+    id = db.Column(db.Integer, primary_key=True) 
+    user1_Id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user2_Id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    status = db.Column(db.Integer,nullable=False,default=0)
+    # 0 : not friends , 1: Pending, 2: Friends, 3:declined
+    action_by = db.Column(db.Integer, db.ForeignKey('users.id'))
+    created_at = db.Column(db.DateTime,index=True, default=datetime.utcnow)
+    modified_at = db.Column(db.DateTime)

@@ -1,5 +1,6 @@
 FLASK_APP=application.py
 FLASK_ENV=development
+FLASK_DEBUG=1
 
 S3_BUCKET = jto-images
 S3_KEY = AKIATITNO3I4TZQBATE5
