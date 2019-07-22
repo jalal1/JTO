@@ -1,6 +1,4 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="profile-section thirteen wide column">
 
     <h1>Hi, User {{ user }}!</h1>
@@ -20,11 +18,12 @@
     <table>
         <th>Id</th>
         <th>Name</th>
-        {% for user in users %}
+        {% for user in Notfriends %}
         <tr>
             <td>{{user.id}}</td>
             <td>{{user.name}}</td>
-            <td>{{user.status}}</td>
+            <td id="status_{{user.id}}">{{user.status}}</td>
+            <td><button id="{{user.id}}" class="status_button"></button></td>
         </tr>
         {% endfor %}
     </table>

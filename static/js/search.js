@@ -47,4 +47,32 @@ var main = function() {
         });
 
     });
+
+    //like function
+    $('.status_button').each(function() {
+        var userid = $(this).attr('id')
+        var statusid = 'status_' + userid
+        var status = $("#" + statusid).html() //$("#" + statusid).val()
+        if (status == 1) {
+            //$("#" + userid).prop('text', 'Accept friend')
+            $("#" + userid).html('Accept friend');
+
+        }
+        $(this).click(function() {
+            // 2 means to become friends
+            var result = { "userid": userid, "status": "2" }
+            $.ajax({
+                url: window.location.origin + "/updatestatus",
+                type: "POST",
+                data: JSON.stringify(result),
+                contentType: "application/json",
+                dataType: "json",
+                success: function(result) {
+                    $("#" + result.userid).html('Friends now!');
+                }
+            });
+
+        });
+
+    });
 }

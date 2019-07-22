@@ -31,7 +31,7 @@ def Getlast10posts(userid):
     result = db.session.query(Post).filter(Post.user_id == userid).order_by(desc(Post.created_at)).limit(10).all()
     return result
 
-def GetNewPosts(userid,username):
+def GetNewPosts(userid):
     result = []
     #Get user's last post
     userspostsquery = db.session.query(Post).filter(Post.user_id == userid).order_by(desc(Post.created_at)).limit(1).all()
