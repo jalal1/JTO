@@ -12,17 +12,12 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/")
 def main():
-<<<<<<< HEAD
-    return redirect(url_for('login'))
-
-=======
 
     if current_user.is_authenticated:
         return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
     else:
         return redirect(url_for('login'))
     
->>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401
 @app.route("/search",methods=['POST'])
 def search():   
     users = []
@@ -176,7 +171,6 @@ def login():
             login_user(user,remember=form.remember.data)
             #session['currentuserid'] = user.id
             #session['currentusername'] = user.name
-
             return render_template('index.html', title='home',currentuser=current_user,newposts = GetRecentPosts())
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
