@@ -92,9 +92,7 @@
             <span class="title">My News Feed</span>
 
             <div class="ui feed segment">
-                {% if variable|length %}
-
-                {% for post in posts %}
+                {% if variable|length %} {% for post in posts %}
                 <div class="event">
                     <div class="label">
                         <img src="/static/images/img.jpg">
@@ -116,11 +114,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-
-                {% else %}
-                Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength!
-                {% endif %}
+                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %}
             </div>
 
         </div>

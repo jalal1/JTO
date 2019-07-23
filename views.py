@@ -228,7 +228,7 @@ def register():
 @app.route("/logout")
 def logout():
         logout_user()
-        return render_template('index.html')
+        return redirect(url_for('login'))
 
 @app.route("/updatestatus",methods=['POST'])
 def updatestatus():   

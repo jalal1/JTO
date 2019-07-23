@@ -20,7 +20,7 @@
             JTO (Fitness Social Network)
         </a>
         <div class="ui simple right aligned dropdown item">
-            {{ user }} <i class="dropdown icon"></i>
+            {{ current_user.name }} <i class="dropdown icon"></i>
             <div class="menu">
                 <a class="item" href="#">Link Item</a>
                 <a class="item" href="#">Link Item</a>
@@ -37,19 +37,16 @@
             </div>
 
             <a class="item" href="{{url_for('profile',id=current_user.id)}}">
-                <i class="user icon"></i>
-                My Profile
+                <i class="user icon"></i> My Profile
 
             </a>
             <a class="item" href="/">
-                <i class="newspaper icon"></i>
-                News
+                <i class="newspaper icon"></i> News
             </a>
             <a class="item">
-                <i class="users icon"></i>
-                Friends
+                <i class="users icon"></i> Friends
             </a>
-    
+
             <div class="search" id="search_result"></div>
         </div>
         {% block content %}{% endblock %}
