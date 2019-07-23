@@ -1,3 +1,7 @@
+.full-width {
+  width: 100%;
+}
+
 #home-page .ui.menu.header-menu {
   border-radius: 0;
   height: 45px;
@@ -18,6 +22,10 @@
 #home-page .secondary-menu {
   border: none;
   box-shadow: none;
+}
+#home-page .secondary-menu i {
+  float: unset;
+  margin: 0 6px 0 0;
 }
 #home-page span.title {
   font-size: 21px;
@@ -104,6 +112,16 @@
 #login-page .ui.stacked.segments:after,
 #login-page .ui.stacked.segments:before {
   height: 4px;
+}
+
+#sign-page .login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+#sign-page .login-form form {
+  width: 350px;
 }
 
 /*# sourceMappingURL=style.css.map */
