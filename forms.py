@@ -1,10 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,FileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from models import User
 
 class PostForm(FlaskForm):
     text = StringField('text', validators=[DataRequired()])
+    upload = SubmitField('Upload')
+
+class UploadUserImageForm(FlaskForm):
+
+    userimage = FileField('Image file',validators=[DataRequired()])
     upload = SubmitField('Upload')
 
 #DataRequired - it cannot be empty

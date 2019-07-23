@@ -33,3 +33,17 @@ def Search(text):
         return result
     else:
         return ""
+
+
+def UpdateProfileImage(id,image_url):
+
+    try:
+        user =User.query.get(id)
+        if user:
+            user.image_path = image_url
+            db.session.commit()
+        
+        return "Done!"
+
+    except Exception as error:
+        return errors.internal_error(error)

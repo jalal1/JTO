@@ -1,12 +1,15 @@
-{% extends "base.html" %}
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 
 <div class="profile-section thirteen wide column">
     <div class="ui grid">
         <div class="images-section six wide column">
-            <img class="ui small image" src="/static/images/img.jpg">
+            <img class="ui small image" src="{{user.image_path}}">
+            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data">
+                {{ userimageform.hidden_tag() }}
+                <p>{{ userimageform.userimage }} <br> {{ userimageform.upload() }}</p>
+                </p>
+            </form>
             <span class="title">Friends</span>
             <div class="prof-friends">
                 {% for friend in friends %}
@@ -31,10 +34,10 @@
                 <span class="profile-status">Loves Fitness and Movies</span>
 
                 <span class="prof-status">
-                    {% if session['currentusername'] == user.name %}
+                    {% if current_user.id == user.id %}
                     My Profile
                     {% else %}
-                    You are friends
+                    <button>{{status}}</button>
                     {% endif %}
                 </span>
                 <div class="profile-details">
