@@ -13,10 +13,10 @@ class Config(object):
 class DevelopmentConfig(Config):
     POSTGRES = {
         'user': 'postgres',
-        'pw': '1',
+        'pw': 'ov1012',
         'db': 'jto',
         'host': 'localhost',
-        'port': '5432',
+        'port': '5431',
     }
     SQLALCHEMY_DATABASE_URI = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES

@@ -12,12 +12,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/")
 def main():
-<<<<<<< HEAD
-    return render_template('index.html')
-=======
-
     return redirect(url_for('login'))
->>>>>>> 28f6d2430b8ab99ef9c65aa8572872f6a4ee3cc5
 
 @app.route("/search",methods=['POST'])
 def search():   
@@ -149,14 +144,8 @@ def like():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-<<<<<<< HEAD
     #if current_user.is_authenticated:
         #return render_template('index.html')
-=======
-    
-    if current_user.is_authenticated:
-        return render_template('index.html')
->>>>>>> 28f6d2430b8ab99ef9c65aa8572872f6a4ee3cc5
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -164,11 +153,10 @@ def login():
             login_user(user,remember=form.remember.data)
             session['currentuserid'] = user.id
             session['currentusername'] = user.name
-
             return render_template('index.html', title='home',user="" ,form=form,currentuser = user,newposts = GetRecentPosts())
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template('login2.html', title='Login', form=form)
+    return render_template('login2.html', title='', form=form)
 
 def GetRecentPosts():
     #print(session['currentuserid'])
@@ -194,11 +182,8 @@ def register():
 def logout():
         logout_user()
         return render_template('index.html')
-<<<<<<< HEAD
 
 @app.route("/account")
 @login_required
 def account():
     return render_template('account.html', title='Account', form=form)
-=======
->>>>>>> 28f6d2430b8ab99ef9c65aa8572872f6a4ee3cc5
