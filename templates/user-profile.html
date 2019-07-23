@@ -89,6 +89,8 @@
             <span class="title">My News Feed</span>
 
             <div class="ui feed segment">
+                {% if variable|length %}
+
                 {% for post in posts %}
                 <div class="event">
                     <div class="label">
@@ -112,6 +114,10 @@
                     </div>
                 </div>
                 {% endfor %}
+
+                {% else %}
+                Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength!
+                {% endif %}
             </div>
 
         </div>

@@ -1,3 +1,6 @@
+.full-width{
+    width: 100%;
+}
 #home-page {
     .ui.menu.header-menu {
         border-radius: 0;
@@ -21,6 +24,11 @@
     .secondary-menu {
         border: none;
         box-shadow: none;
+
+        i{
+            float: unset;
+            margin: 0 6px 0 0;
+        }
     }
 
     span.title{
@@ -49,6 +57,7 @@
         margin-bottom: 24px;
         padding: 16px;
     }
+  
 
 
     .profile-info {
@@ -134,4 +143,20 @@
     .ui.stacked.segments:before {
         height: 4px;
     }
+
+ 
+}
+
+#sign-page{
+    .login-form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+
+        form{
+            width: 350px;
+        }
+    }
+
 }
