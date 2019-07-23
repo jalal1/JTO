@@ -165,28 +165,15 @@ def like():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
-<<<<<<< HEAD
-    #if current_user.is_authenticated:
-        #return render_template('index.html')
-=======
 
     if current_user.is_authenticated:
         return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
 
->>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password,form.password.data):
             login_user(user,remember=form.remember.data)
-<<<<<<< HEAD
-            session['currentuserid'] = user.id
-            session['currentusername'] = user.name
-            return render_template('index.html', title='home',user="" ,form=form,currentuser = user,newposts = GetRecentPosts())
-        else:
-            flash('Login Unsuccessful. Please check username and password', 'danger')
-    return render_template('login2.html', title='', form=form)
-=======
             #session['currentuserid'] = user.id
             #session['currentusername'] = user.name
 
@@ -196,7 +183,6 @@ def login():
 
 
     return render_template('login2.html', title='Login', form=form)
->>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401
 
 def GetRecentPosts():
     #print(session['currentuserid'])
@@ -223,12 +209,6 @@ def logout():
         logout_user()
         return render_template('index.html')
 
-<<<<<<< HEAD
-@app.route("/account")
-@login_required
-def account():
-    return render_template('account.html', title='Account', form=form)
-=======
 @app.route("/updatestatus",methods=['POST'])
 def updatestatus():   
 
@@ -238,4 +218,3 @@ def updatestatus():
     status_obj["userid"] = content['userid']
     json_data = json.dumps(status_obj)
     return json_data
->>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401
