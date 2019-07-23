@@ -12,8 +12,17 @@ from flask_login import login_user, current_user, logout_user, login_required
 
 @app.route("/")
 def main():
+<<<<<<< HEAD
     return redirect(url_for('login'))
 
+=======
+
+    if current_user.is_authenticated:
+        return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
+    else:
+        return redirect(url_for('login'))
+    
+>>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401
 @app.route("/search",methods=['POST'])
 def search():   
     users = []
@@ -39,9 +48,9 @@ def get_user(id):
     return result
 
 
-@app.route("/post/add/<text>/<userid>")
-def add_post(text,userid):
-    result = service.post.AddPost(text,userid)
+@app.route("/post/add/<text>")
+def add_post(text):
+    result = service.post.AddPost(text,current_user.id)
     return result
 
 
@@ -61,11 +70,22 @@ def upload_image():
 @app.route("/relation/add/<id>")
 def add_friend(id):
     # check the status between them first
-    if session['currentuserid']:
-        status = service.relation.GetRelationStatus(int(session['currentuserid']),int(id))
+    print(current_user.id)
+    if current_user:
+        status = service.relation.GetRelationStatus(current_user.id,int(id))
         # if not friends nor pending, then the status will be pending : 1 
-        if status == 0 :
-            result = service.relation.UpdateRelation(int(session['currentuserid']),int(id),1,int(session['currentuserid']))
+        #if None, means there is no relation before, or the user doesn't exisit
+        if status == None :
+            # check if user is exist 
+            user = service.user.GetUserById(id)
+            if user:
+                result = service.relation.UpdateRelation(current_user.id,int(id),1,current_user.id)
+                result = "Pending"
+            else:
+                return "user doesn't exisit!!"
+        # 0 means, was friends before, or was pending and rejectd    
+        elif status == 0:
+            result = service.relation.UpdateRelation(current_user.id,int(id),1,current_user.id)
             result = "Pending"
         elif status ==1 : 
             result = "Status is already pending!"
@@ -76,11 +96,14 @@ def add_friend(id):
     return result
 
 
-@app.route("/friends/<id>")
-def get_friends(id):
+@app.route("/friends")
+def get_friends():
     # Get friends for id
-    friends = service.relation.GetFriends(int(id))
-    return render_template('friends.html',friends=friends)
+    friends = ""
+    friends = service.relation.GetFriends(current_user.id)
+    Notfriends = service.relation.GetNotFriends(current_user.id)
+    if current_user and friends:
+        return render_template('friends.html',Notfriends=Notfriends,friends=friends,user=current_user)
 
     
 @app.route("/profile/<id>")
@@ -139,28 +162,45 @@ def like():
     likes_obj["postid"] = content['postid']
     json_data = json.dumps(likes_obj)
     return json_data
-    users = service.relation.GetAll(id)
-    return render_template('friends.html',friends=friends,users=users,user=id)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+<<<<<<< HEAD
     #if current_user.is_authenticated:
         #return render_template('index.html')
+=======
+
+    if current_user.is_authenticated:
+        return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
+
+>>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password,form.password.data):
             login_user(user,remember=form.remember.data)
+<<<<<<< HEAD
             session['currentuserid'] = user.id
             session['currentusername'] = user.name
             return render_template('index.html', title='home',user="" ,form=form,currentuser = user,newposts = GetRecentPosts())
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
     return render_template('login2.html', title='', form=form)
+=======
+            #session['currentuserid'] = user.id
+            #session['currentusername'] = user.name
+
+            return render_template('index.html', title='home',currentuser=current_user,newposts = GetRecentPosts())
+        else:
+            flash('Login Unsuccessful. Please check username and password', 'danger')
+
+
+    return render_template('login2.html', title='Login', form=form)
+>>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401
 
 def GetRecentPosts():
     #print(session['currentuserid'])
-    newposts = service.post.GetNewPosts(current_user.id,current_user.name)
+    newposts = service.post.GetNewPosts(current_user.id)
     return newposts
 
 @app.route("/register", methods=['GET', 'POST'])    
@@ -183,7 +223,19 @@ def logout():
         logout_user()
         return render_template('index.html')
 
+<<<<<<< HEAD
 @app.route("/account")
 @login_required
 def account():
     return render_template('account.html', title='Account', form=form)
+=======
+@app.route("/updatestatus",methods=['POST'])
+def updatestatus():   
+
+    content = request.get_json()
+    result = service.relation.UpdateRelation(current_user.id,int(content['userid']),int(content['status']),int(content['userid']))
+    status_obj = {}
+    status_obj["userid"] = content['userid']
+    json_data = json.dumps(status_obj)
+    return json_data
+>>>>>>> b3f40b9b69e9b6d36efdd434fceb5446e5825401

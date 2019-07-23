@@ -10,21 +10,25 @@ from sqlalchemy.sql import union, select
 def UpdateRelation(id1, id2, status, action_by):
 
     try:
-        relation = Relationship()
-        if id1 < id2:
-            relation.user1_Id = id1
-            relation.user2_Id = id2
+        exisit_relation =GetRelation(id1,id2)
+        if exisit_relation:
+            exisit_relation.status = status
+            db.session.commit()
         else:
-            relation.user1_Id = id2
-            relation.user2_Id = id1
-
-        relation.status = status
-        relation.action_by = action_by
-
-        db.session.add(relation)
-        db.session.commit()
-
+            relation = Relationship()
+            if id1 < id2:
+                relation.user1_Id = id1
+                relation.user2_Id = id2
+            else:
+                relation.user1_Id = id2
+                relation.user2_Id = id1
+            relation.status = status
+            relation.action_by = action_by
+            db.session.add(relation)
+            db.session.commit()
+        
         return "relation updated successfully!!"
+
     except Exception as error:
         return errors.internal_error(error)
 
@@ -63,6 +67,16 @@ def GetAll(id):
     q2 = db.session.query(User).add_columns(User.id,User.name,Relationship.status).join(
         Relationship, User.id == Relationship.user2_Id).filter(Relationship.user1_Id == id)
     #q3 = db.session.query(User).add_columns(User.id,User.name,'null').filter(User.id != id)
+    result = q1.union(q2)
+
+    return result
+
+
+def GetNotFriends(id):
+    q1 = db.session.query(User).add_columns(User.id,User.name,Relationship.status).join(
+        Relationship, User.id == Relationship.user1_Id).filter(Relationship.user2_Id == id, Relationship.status!=2)
+    q2 = db.session.query(User).add_columns(User.id,User.name,Relationship.status).join(
+        Relationship, User.id == Relationship.user2_Id).filter(Relationship.user1_Id == id, Relationship.status!=2)
     result = q1.union(q2)
 
     return result
