@@ -5,13 +5,9 @@ import test
 from flask import render_template,request,url_for, flash, redirect,session
 from forms import PostForm, RegistrationForm,LoginForm,UploadUserImageForm
 from models import User, Post
-<<<<<<< HEAD
-from flask_login import login_user, current_user, logout_user, login_required
-=======
 from flask_login import login_user, current_user, logout_user,login_required
 
 
->>>>>>> bdd3f106051f03c0ef039da3ffa377cc845f310c
 
 
 @app.route("/")
