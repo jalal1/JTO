@@ -14,8 +14,11 @@
             <div class="prof-friends">
                 {% for friend in friends %}
                 <div class="prof-friend">
-                    <img class="ui tiny circular image" src="/static/images/img.jpg">
-                    <span class="friend-name">{{friend.name}}</span>
+                    {% if friend.image_path %}
+                    <img class="ui tiny circular image" src="{{friend.image_path}}"> {% else %}
+                    <img class="ui tiny circular image" src="/static/images/img.jpg"> {% endif %}
+                    <a href="{{url_for('profile',id=friend.id)}}"><span class="friend-name">{{friend.name}}</span></a>
+
                 </div>
                 {% endfor %}
 
@@ -92,7 +95,7 @@
             <span class="title">My News Feed</span>
 
             <div class="ui feed segment">
-                {% if variable|length %} {% for post in posts %}
+                {% if posts|length %} {% for post in posts %}
                 <div class="event">
                     <div class="label">
                         <img src="/static/images/img.jpg">

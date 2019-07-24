@@ -16,7 +16,7 @@
 
 <body id="home-page">
     <div class="ui inverted menu header-menu">
-        <a href="index.html" class="header item">
+        <a href="{{ url_for('main')}}" class="header item">
             JTO (Fitness Social Network)
         </a>
         <div class="ui simple right aligned dropdown item">
@@ -43,7 +43,7 @@
             <a class="item" href="/">
                 <i class="newspaper icon"></i> News
             </a>
-            <a class="item">
+            <a class="item" href="{{url_for('get_friends')}}">
                 <i class="users icon"></i> Friends
             </a>
 

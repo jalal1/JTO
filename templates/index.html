@@ -1,6 +1,4 @@
-{% extends "base.html" %} 
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <div class="news-feed thirteen wide column">
     <div class="ui form">
@@ -11,10 +9,7 @@
         <button class="ui small green button">Submit</button>
     </div>
     <div class="ui feed">
-        <span class="title">News Feed</span>
-        {% if variable|length %}
-
-        {% for post in newposts %}
+        <span class="title">News Feed</span> {% if newposts|length %} {% for post in newposts %}
         <div class="news-feed event ui segment">
             <div class="label">
                 <img src="/static/images/img.jpg">
@@ -38,11 +33,7 @@
                 </div>
             </div>
         </div>
-        {% endfor %}
-
-        {% else %}
-            Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength!
-        {% endif %}
+        {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %}
 
     </div>
 </div>

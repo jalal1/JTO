@@ -143,6 +143,7 @@ def profile(id,img_url=None):
                     # it means we are friends, so we get the friends list, and recent posts
                     friends = service.relation.GetFriends(int(id))
                     recentposts = service.post.Getlast10posts(int(id))
+                    userimageform = UploadUserImageForm()
                 # if pending, and the action done by profile user id, then I can accept or not.
                 elif relation.status == 1 and relation.action_by ==int(id):
                     status = "Accept/Delete"
@@ -153,7 +154,8 @@ def profile(id,img_url=None):
                     status = "Add Friend"
             else:
                 status = "Add Friend"
-                
+
+            
 
 
         else:
