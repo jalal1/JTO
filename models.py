@@ -54,7 +54,7 @@ class User(db.Model,UserMixin):
     created_at = db.Column(db.DateTime,default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
     image_path = db.Column(db.String(200), nullable=True)
-    post = db.relationship('Post', backref='author', lazy=True)
+   # post = db.relationship('Post', backref='author', lazy=True)
     
     """one to many relationship. Post Attribute has a relationship to the Post model
        backref is allows us to do is -> when we have a post we can simply use this 
