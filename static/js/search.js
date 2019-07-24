@@ -8,7 +8,7 @@ var main = function() {
         var text = { "text": $(this).val() }
 
         $.ajax({
-            url: window.location.href + "search",
+            url: window.location.origin + "/search",
             type: "POST",
             data: JSON.stringify(text),
             contentType: "application/json",
@@ -29,7 +29,7 @@ var main = function() {
             var post = { "postid": $(this).attr('id') }
 
             $.ajax({
-                url: window.location.href + "like",
+                url: window.location.origin + "/like",
                 type: "POST",
                 data: JSON.stringify(post),
                 contentType: "application/json",

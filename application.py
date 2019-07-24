@@ -10,7 +10,8 @@ app.config.from_object(DevelopmentConfig)
 db.init_app(app)
 bcrypt = Bcrypt(app) # to encrypt passwords
 
-login_manager = LoginManager(app) 
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(user_id):

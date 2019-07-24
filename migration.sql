@@ -90,5 +90,19 @@ ALTER TABLE posts ALTER COLUMN likes SET NOT NULL;
 
 UPDATE alembic_version SET version_num='c64e2c7405ae' WHERE alembic_version.version_num = '670ea5c6d6b0';
 
+-- Running upgrade c64e2c7405ae -> cc760ec42088
+
+ALTER TABLE posts ADD COLUMN image_path VARCHAR(200);
+
+ALTER TABLE posts ALTER COLUMN created_at SET NOT NULL;
+
+ALTER TABLE posts ALTER COLUMN user_id SET NOT NULL;
+
+ALTER TABLE posts DROP COLUMN image_id;
+
+ALTER TABLE users ADD COLUMN image_path VARCHAR(200);
+
+UPDATE alembic_version SET version_num='cc760ec42088' WHERE alembic_version.version_num = 'c64e2c7405ae';
+
 COMMIT;
 

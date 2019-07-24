@@ -1,118 +1,145 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Login</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    </head>
-    <body>
-        {% block content %}
-        <div class="content-section">
-            <form method="POST" action="">
-     
-                {{ form.hidden_tag()}}
-                <fieldset class="form-group">
-     
-                    <legend class="border-bottom mb-4">
-                        Join Today
-     
-                    </legend>
-     
-                    <div class=" form=group">
-     
-                        {{form.name.label(class="form-control-label")}}
-     
-                         {% if form.name.errors%}
-                         {{form.name(class="form-control form-control-lg is-invalid")}}
-                         <div class ="invalid-feedback">
-                          
-                              {% for errors in form.name.errors %}
-                                    <span> {{ error }}</span>
-                               {% endfor %}
-                         </div>
-                        {% else%}
-                        {{form.name(class="form-control form-control-lg")}}
-                         {% endif %}
-                    </div>
-                    
-                     <div class=" form=group">
-     
-                        {{form.email.label(class="form-control-label")}}
-                        {% if form.email.errors%}
-                        {{form.email(class="form-control form-control-lg is-invalid")}}
-                        <div class ="invalid-feedback">
-                         
-                             {% for errors in form.email.errors %}
-                                   <span> {{ error }}</span>
-                              {% endfor %}
-                        </div>
-                       {% else%}
-                       {{form.email(class="form-control form-control-lg")}}
-                        {% endif %}
-     
-                    </div>
-                     <div class=" form=group">
-     
-                        {{form.password.label(class="form-control-label")}}
-                        {% if form.password.errors%}
-                        {{form.password(class="form-control form-control-lg is-invalid")}}
-                        <div class ="invalid-feedback">
-                         
-                             {% for errors in form.password.errors %}
-                                   <span> {{ error }}</span>
-                              {% endfor %}
-                        </div>
-                       {% else%}
-                       {{form.password(class="form-control form-control-lg")}}
-                        {% endif %}
-     
-                    </div>
-     
-                    <div class=" form=group">
-     
-                        {{form.confirm_password.label(class="form-control-label")}}
-                        {% if form.confirm_password.errors%}
-                         {{form.confirm_password(class="form-control form-control-lg is-invalid")}}
-                         <div class ="invalid-feedback">
-                          
-                              {% for errors in form.confirm_password.errors %}
-                                    <span> {{ error }}</span>
-                               {% endfor %}
-                         </div>
-                        {% else%}
-                        {{form.confirm_password(class="form-control form-control-lg")}}
-                         {% endif %}
-     
-                    </div>
-     
-     
-     
-                </fieldset>
-     
-                <div class="form-group">
-                    {{form.submit(class="btn btn-outline-info")}}
-     
+{% extends "sign-base.html" %}
+{% block content %}
+<div class="ui container">
+    <div class="website-info">
+        <div class="ui statistics inverted segment">
+            <h2 class="text-center">JTO - Social Fitness Platform, where You can share your Goals, Challenges, Diet and
+                many many other
+                features
+                with friends. </h2>
+            <div class="red inverted statistic">
+                <div class="text value">
+                    Save <br> Albums
                 </div>
-            </form>
-     
+                <div class="label">
+                    Feature
+                </div>
+            </div>
+            <div class="orange inverted statistic">
+                <div class="text value">
+                    Add<br>
+                    Friends
+                </div>
+                <div class="yellow inverted label">
+                    Feature
+                </div>
+            </div>
+            <div class="olive inverted statistic">
+                <div class="text value">
+                    Cloud <br> Based
+                </div>
+                <div class="label">
+                    Website
+                </div>
+            </div>
+            <div class="green inverted statistic">
+                <div class="text value">
+                    News <br> Feed
+                </div>
+                <div class="label">
+                    Feature
+                </div>
+            </div>
+            <div class="violet inverted statistic">
+                <div class="text value">
+                    Upload <br> Diet
+                </div>
+                <div class="label">
+                    Feature
+                </div>
+            </div>
+            <div class="blue inverted statistic">
+                <div class="text value">
+                    Social <br> Network
+                </div>
+                <div class="label">
+                    Analog
+                </div>
+            </div>
         </div>
-     
-     <div class="border-top pt-3">
-         <small class="text-muted">
-             Already Have an Account ? <a class ="ml-2" href="{{url_for('login')}}"> Sign In</a>
-             <!-- login function name from flaskblog.py -->
-         </small>
-     
-     </div>
+    </div>
+    <div class="login-form">
+        <form method="POST" action="" class="ui form">
 
+            {{ form.hidden_tag()}}
+            <div class="field">
+                {{form.name.label(class="form-control-label")}}
 
-     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+                {% if form.name.errors%}
+                {{form.name(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
 
-     {% endblock content %}
+                    {% for errors in form.name.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.name(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
 
+            <div class="field">
 
-    </body>
-</html>
+                {{form.email.label(class="form-control-label")}}
+                {% if form.email.errors%}
+                {{form.email(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
 
+                    {% for errors in form.email.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.email(class="form-control form-control-lg")}}
+                {% endif %}
+
+            </div>
+            <div class="field">
+
+                {{form.password.label(class="form-control-label")}}
+                {% if form.password.errors%}
+                {{form.password(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+
+                    {% for errors in form.password.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.password(class="form-control form-control-lg")}}
+                {% endif %}
+
+            </div>
+
+            <div class="field">
+
+                {{form.confirm_password.label(class="form-control-label")}}
+                {% if form.confirm_password.errors%}
+                {{form.confirm_password(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+
+                    {% for errors in form.confirm_password.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.confirm_password(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+
+            <div class="field">
+                {{form.submit(class="ui button full-width green")}}
+
+            </div>
+            <div class="ui horizontal divider">
+                Or
+            </div>
+            <div class="field">
+                <a href="{{url_for('login')}}" class='ui teal button full-width'>Login</a>
+                <!-- login function name from flaskblog.py -->
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock content %}

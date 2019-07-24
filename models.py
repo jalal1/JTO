@@ -53,7 +53,7 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(60), nullable=True)
     created_at = db.Column(db.DateTime,default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
-    #image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
+    image_path = db.Column(db.String(200), nullable=True)
     post = db.relationship('Post', backref='author', lazy=True)
     
     """one to many relationship. Post Attribute has a relationship to the Post model
@@ -70,7 +70,7 @@ class Post(BaseModel, db.Model):
     text = db.Column(db.String(128), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     'users - tablename , id - column nae'
-    image_id = db.Column(db.Integer(), nullable=True)
+    image_path = db.Column(db.String(200), nullable=True)
     created_at = db.Column(db.DateTime,index=True,nullable=False, default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
     likes = db.Column(db.Integer(), nullable=False,default = 0)

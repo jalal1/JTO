@@ -1,16 +1,21 @@
 from application import app, db, bcrypt, login_manager
-import service.user
-import service.post
-import service.relation
+import service.user,service.post,service.relation,service.general
 import json
 import test
 from flask import render_template,request,url_for, flash, redirect,session
-from forms import PostForm, RegistrationForm,LoginForm
+from forms import PostForm, RegistrationForm,LoginForm,UploadUserImageForm
 from models import User, Post
+<<<<<<< HEAD
 from flask_login import login_user, current_user, logout_user, login_required
+=======
+from flask_login import login_user, current_user, logout_user,login_required
+
+
+>>>>>>> bdd3f106051f03c0ef039da3ffa377cc845f310c
 
 
 @app.route("/")
+@login_required
 def main():
 
     if current_user.is_authenticated:
@@ -59,10 +64,29 @@ def upload_image():
     form = PostForm()
     if form.validate_on_submit():
         file = request.files['file']
-        service.post.UploadImage(file)
+        service.general.UploadImage(file)
     return render_template('upload.html', title='Upload image', form=form)
 
+@app.route("/user/upload/",methods=['POST'])
+def upload_user_image():
+
+    result =""
+    form = UploadUserImageForm()
+    if form.validate_on_submit():
+        img_url = service.general.UploadImage(form.userimage)
+        if img_url:
+            #update user
+            service.user.UpdateProfileImage(current_user.id,img_url)
+            return profile(current_user.id,img_url)
+        else:
+            # should modifty this case!!!
+            return redirect(url_for('profile',id=current_user.id))
+    else:
+        # should modifty this case!!!
+        return redirect(url_for('profile',id=current_user.id))
+
 @app.route("/relation/add/<id>")
+@login_required
 def add_friend(id):
     # check the status between them first
     print(current_user.id)
@@ -92,6 +116,7 @@ def add_friend(id):
 
 
 @app.route("/friends")
+@login_required
 def get_friends():
     # Get friends for id
     friends = ""
@@ -101,18 +126,20 @@ def get_friends():
         return render_template('friends.html',Notfriends=Notfriends,friends=friends,user=current_user)
 
     
-@app.route("/profile/<id>")
-def profile(id):
+@app.route("/profile/<id>/")
+@app.route("/profile/<id>/<img_url>")
+@login_required
+def profile(id,img_url=None):
     friends = user = recentposts = status =   ""
     # Get the profile for the user using the Id
     user = service.user.GetUserById(int(id))
     # Check the friendship status
     
-    if session.get('currentuserid'):
+    if current_user:
         # get my friend's profile
         # if logged-in user's id is not the same as the profile id, it means not my profile
-        if int(session.get('currentuserid')) != int(id): 
-            relation = service.relation.GetRelation(int(session['currentuserid']),int(id))
+        if current_user.id != int(id): 
+            relation = service.relation.GetRelation(current_user.id,int(id))
             if relation:
                 if relation.status == 2:
                     status = "Friends"
@@ -120,15 +147,15 @@ def profile(id):
                     friends = service.relation.GetFriends(int(id))
                     recentposts = service.post.Getlast10posts(int(id))
                 # if pending, and the action done by profile user id, then I can accept or not.
-                elif relation.status == 1 and relation.action_by ==id:
+                elif relation.status == 1 and relation.action_by ==int(id):
                     status = "Accept/Delete"
                 # if pending, and the action by me, then just show "Pending"
-                elif relation.status == 1 and relation.action_by == int(session['currentuserid']):
+                elif relation.status == 1 and relation.action_by == current_user.id:
                     status = "Pending"
                 elif relation.status == 0:
                     status = "Add Friend"
             else:
-                status = "No Relation!"
+                status = "Add Friend"
                 
 
 
@@ -137,8 +164,10 @@ def profile(id):
             status = "Me"
             friends = service.relation.GetFriends(int(id))
             recentposts = service.post.Getlast10posts(int(id))
-                
-    return render_template('user-profile.html',user = user,friends = friends,posts = recentposts,status=status)
+            # show upload profile image form
+            userimageform = UploadUserImageForm()
+  
+    return render_template('user-profile.html',user = user,current_user = current_user,friends = friends,posts = recentposts,status=status,userimageform = userimageform)
 
 @app.route("/test/load")
 def load():
@@ -179,7 +208,7 @@ def login():
     return render_template('login2.html', title='Login', form=form)
 
 def GetRecentPosts():
-    #print(session['currentuserid'])
+    #prcurrent_user.id
     newposts = service.post.GetNewPosts(current_user.id)
     return newposts
 
@@ -201,7 +230,7 @@ def register():
 @app.route("/logout")
 def logout():
         logout_user()
-        return render_template('index.html')
+        return redirect(url_for('login'))
 
 @app.route("/updatestatus",methods=['POST'])
 def updatestatus():   
