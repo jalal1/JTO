@@ -15,5 +15,5 @@ def UploadImage(file):
             return "{}{}".format(Config.S3_LOCATION, file.data.filename)
 
     except Exception as error:
-        return errors.internal_error(error)
+         errors.internal_error(error)
 

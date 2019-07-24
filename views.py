@@ -1,4 +1,4 @@
-from application import app, db, bcrypt, login_manager
+from app import app, db, bcrypt, login_manager
 import service.user,service.post,service.relation,service.general
 import json
 import test
@@ -10,7 +10,8 @@ from flask_login import login_user, current_user, logout_user,login_required
 
 
 
-@app.route("/")
+@app.route("/") 
+@app.route("/index")
 @login_required
 def main():
 
