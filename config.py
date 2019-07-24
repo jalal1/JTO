@@ -15,7 +15,7 @@ class DevelopmentConfig(Config):
     POSTGRES = {
         'user': 'postgres',
         'pw': 'ov1012',
-        'db': 'jto',
+        'db': 'jto2',
         'host': 'localhost',
         'port': '5431',
     }
