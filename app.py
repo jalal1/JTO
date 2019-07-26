@@ -6,7 +6,7 @@ from flask_login import LoginManager
 from models import User
 
 application = app = Flask(__name__) # application variable is needed when deploy to AWS
-app.config.from_object(ProductionConfig)
+app.config.from_object(DevelopmentConfig)
 db.init_app(app)
 bcrypt = Bcrypt(app) # to encrypt passwords
 
