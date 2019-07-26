@@ -51,22 +51,17 @@ class LoginForm(FlaskForm):
 class UpdateAccountForm(FlaskForm):
     name = StringField('name',
                            validators=[DataRequired(), Length(min=2, max=20)])
-
-    password = PasswordField('Password',
+    password = PasswordField('password',
                         validators=[DataRequired()])
-    weight = StringField('weight',
-                           validators=[DataRequired()])
-    city = StringField('city',
-                           validators=[DataRequired()])
-    interest = StringField('interest',
-                           validators=[DataRequired()])
-    languages = StringField('languages',
-                           validators=[DataRequired()])
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
-    def validate_name(self, name):
-        if name.data != current_user.name:
-            user = User.query.filter_by(name=name.data).first()
-            if user:
-                raise ValidationError('That username is taken. Please choose a different one.')
+
+
+
+
+   
+
+    
+  
+ 

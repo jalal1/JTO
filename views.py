@@ -291,17 +291,10 @@ def account():
     if form.validate_on_submit():
         current_user.name = form.name.data
         current_user.password = form.password.data
-        current_user.weight = form.weight.data
-        current_user.city = form.city.data
-        current_user.interest = form.interest.data
-        current_user.languages = form.languages.data
-        db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.name.data = current_user.name
-        #form.password.data = current_user.password
-   # profile_image = url_for('static', filename='profile_pics' + current_user.profile_image)
     return render_template('account.html', title='Account', form=form)
 
 
