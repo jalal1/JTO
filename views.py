@@ -289,17 +289,19 @@ def save_picture(form_picture):
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = save_picture(form.picture.data)
-            current_user.profile_image = picture_file
         current_user.name = form.name.data
-        current_user.email = form.email.data
+        current_user.password = form.password.data
+        current_user.weight = form.weight.data
+        current_user.city = form.city.data
+        current_user.interest = form.interest.data
+        current_user.languages = form.languages.data
         db.session.commit()
         flash('Your account has been updated!', 'success')
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.name.data = current_user.name
-        form.email.data = current_user.email
+        #form.password.data = current_user.password
    # profile_image = url_for('static', filename='profile_pics' + current_user.profile_image)
     return render_template('account.html', title='Account', form=form)
+
 
