@@ -216,7 +216,7 @@ def login():
 
     if current_user.is_authenticated:
         return main()
-        #return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
+        #return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts(),userimageform = userimageform,postform = postform)
 
     form = LoginForm()
     if form.validate_on_submit():
