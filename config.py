@@ -12,6 +12,7 @@ class Config(object):
 #test new branch
 
 class DevelopmentConfig(Config):
+    TEMPLATES_AUTO_RELOAD = True
     POSTGRES = {
         'user': 'postgres',
         'pw': 'ov1012',

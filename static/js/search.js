@@ -2,11 +2,11 @@ $(document).ready(function() {
     main();
 });
 
+
 var main = function() {
 
     $("#search_box").keyup(function() {
         var text = { "text": $(this).val() }
-
         $.ajax({
             url: window.location.origin + "/search",
             type: "POST",
@@ -14,14 +14,29 @@ var main = function() {
             contentType: "application/json",
             dataType: "json",
             success: function(result) {
-                $("#search_result").empty()
+                $("#search_result").empty().append( "<div style='font-weight:500;margin-bottom:10px;'>Search Results:</div>" );
+
                 users = result.searchresult
-                users.forEach(function(username) {
-                    $("#search_result").append(username).append("<br>")
+                users.forEach(function(result) {
+
+                    userid = result.split('-')[0]
+                    username = result.split('-')[1]
+
+                    var link = $('<a>', {
+                        text: username,
+                        title: username,
+                        href: window.location.origin + '/profile/' + userid
+                            //click: function() { GotoProfile(userid); return false; }
+                    })
+                    
+                    $("#search_result").append(link).append("<br>")
+
                 });
             }
         })
     });
+
+
 
     //like function
     $('.likebutton').each(function() {

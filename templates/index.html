@@ -1,20 +1,18 @@
-{% extends "base.html" %} 
-
-{% block content %}
+{% extends "base.html" %} {% block content %}
 
 <div class="news-feed thirteen wide column">
     <div class="ui form">
         <div class="field">
             <label>What's new?</label>
-            <textarea rows="2"></textarea>
+            <form method="post" enctype="multipart/form-data" class='image-form'>
+                {{ postform.hidden_tag() }}
+                <p> {{ postform.text() }} <br>
         </div>
-        <button class="ui small green button">Submit</button>
+        <p> {{ postform.postimage() }} <br> <br> {{ postform.submit() }}</p>
+        </form>
     </div>
     <div class="ui feed">
-        <span class="title">News Feed</span>
-        {% if variable|length %}
-
-        {% for post in newposts %}
+        <span class="title">News Feed</span> {% if newposts|length %} {% for post in newposts %}
         <div class="news-feed event ui segment">
             <div class="label">
                 <img src="/static/images/img.jpg">
@@ -30,19 +28,28 @@
                 <div class="extra text">
                     {{post["post"]}}
                 </div>
-                <div class="meta">
-                    <a class="like_{{post.postid}}">
-                        {{post["likes"]}} Likes
-                    </a>
-                    <button id="{{post.postid}}" class="likebutton">like</button>
+                <div>
+                    {% if post.image_path %}
+                    <img , src="{{post.image_path}}"> {% else %}
+                    <img class="ui tiny circular image" src=""> {% endif %}
                 </div>
+                <div class="meta">
+                    <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
+                        <button class="ui teal mini button likebutton" id="{{post.postid}}">
+                            <i class="heart icon"></i> Like
+                        </button>
+
+                        <a class="ui basic teal left pointing label like_{{post.postid}}">
+                            {{post["likes"]}} Likes
+                        </a>
+
+                    </div>
+
+                </div>
+
             </div>
         </div>
-        {% endfor %}
-
-        {% else %}
-            Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength!
-        {% endif %}
+        {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %}
 
     </div>
 </div>

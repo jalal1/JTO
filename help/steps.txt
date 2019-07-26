@@ -13,4 +13,10 @@
             - "python manage.py db upgrade" # update the db automaticaly
 
 
+in case of this error when migrate : " Target database is not up to date."
+
+python manage.py db stamp head
+python manage.py db migrate
+python manage.py db upgrade
+
 

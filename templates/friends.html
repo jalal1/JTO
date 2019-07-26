@@ -3,14 +3,13 @@
     <div class="ui grid">
         <div class="eight wide column">
             <h2 class="ui center aligned icon header">
-                <i class="circular users icon"></i>
-                Friends
+                <i class="circular users icon"></i> Friends
             </h2>
 
             <div class="ui middle aligned selection list">
                 {% for friend in friends %}
                 <div class="item">
-                    <img class="ui avatar image" src="/static/images/img.jpg">
+                    <img class="ui avatar image" src="{{friend.image_path}}">
                     <div class="content">
                         <div class="header">{{friend.name}}</div>
                     </div>
@@ -21,8 +20,7 @@
         <div class="eight wide column">
             <h2 class="ui center aligned icon header">
                 <i class="circular street view
-                icon"></i>
-                All Users
+                icon"></i> All Users
             </h2>
             <div class="ui middle aligned selection list">
                 {% for user in Notfriends %}

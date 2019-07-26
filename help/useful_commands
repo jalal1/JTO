@@ -11,8 +11,11 @@
 - pip freeze > requirements.txt (to generate the requirements file that shows the version of each package)
 - Initialize your EB CLI : (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html)
     - eb init
-    - eb creat [app-name]
-    - Exclude pypiwin32 and pywin32 from requirements.txt
+    - eb creat [app-name] ( needed for each branch)
+    - Exclude pypiwin32 and pywin32 from requirements.txt ( not needed!)
     - eb deploy 
+    - eb terminate : to remove all resourses
 
 - CTRL + F5 to hard refresh the browser, so JS file changes will appear. 
+
+

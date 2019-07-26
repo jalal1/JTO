@@ -5,6 +5,18 @@
 #home-page .ui.menu.header-menu {
   border-radius: 0;
   height: 45px;
+  background: #4a76a8;
+  border-bottom: 1px solid #4872a3;
+}
+#home-page .ui.menu.header-menu .item:before {
+  width: unset;
+}
+#home-page .search {
+  padding: 12px;
+}
+#home-page .search-tag {
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 #home-page .ui.vertical.menu.secondary-menu .item:before {
   width: 0;
@@ -23,9 +35,32 @@
   border: none;
   box-shadow: none;
 }
-#home-page .secondary-menu i {
+#home-page .secondary-menu .item > i {
   float: unset;
   margin: 0 6px 0 0;
+}
+#home-page #upload {
+  padding: 5px;
+  border: 2px solid #4caf50;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff;
+  background-color: #4caf50;
+}
+#home-page #userimage {
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  padding: 4px;
+  background-color: #4caf50;
+  color: #4caf50;
+  width: 104px;
+}
+#home-page #userimage > input {
+  background-color: #4caf50;
+}
+#home-page .image-form h4 {
+  margin-top: 12px;
 }
 #home-page span.title {
   font-size: 21px;

@@ -104,5 +104,19 @@ ALTER TABLE users ADD COLUMN image_path VARCHAR(200);
 
 UPDATE alembic_version SET version_num='cc760ec42088' WHERE alembic_version.version_num = 'c64e2c7405ae';
 
+-- Running upgrade cc760ec42088 -> 90c679497f21
+
+ALTER TABLE posts ADD COLUMN image_path VARCHAR(200);
+
+ALTER TABLE posts ALTER COLUMN created_at SET NOT NULL;
+
+ALTER TABLE posts ALTER COLUMN user_id SET NOT NULL;
+
+ALTER TABLE posts DROP COLUMN image_id;
+
+ALTER TABLE users ADD COLUMN image_path VARCHAR(200);
+
+UPDATE alembic_version SET version_num='90c679497f21' WHERE alembic_version.version_num = 'cc760ec42088';
+
 COMMIT;
 

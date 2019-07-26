@@ -4,29 +4,28 @@
 <div class="profile-section thirteen wide column">
     <div class="ui grid">
         <div class="images-section six wide column">
-            <img class="ui small image" src="{{user.image_path}}">
-            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data">
-                {{ userimageform.hidden_tag() }}
-                <p>{{ userimageform.userimage }} <br> {{ userimageform.upload() }}</p>
-                </p>
+            <img class="ui small image" src="{{user.image_path}}"> {% if userimageform is not none %}
+            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data" class='image-form'>
+
+                <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
+
+                {{ userimageform.hidden_tag() }} {{ userimageform.userimage }} {{ userimageform.upload() }}
+
             </form>
+            {% endif %}
             <span class="title">Friends</span>
             <div class="prof-friends">
-                {% for friend in friends %}
+                {% if friends is not none %} {% for friend in friends %}
                 <div class="prof-friend">
-                    <img class="ui tiny circular image" src="/static/images/img.jpg">
-                    <span class="friend-name">{{friend.name}}</span>
-                </div>
-                {% endfor %}
+                    {% if friend.image_path %}
+                    <img class="ui tiny circular image" src="{{friend.image_path}}"> {% else %}
+                    <img class="ui tiny circular image" src="/static/images/img.jpg"> {% endif %}
+                    <a href="{{url_for('profile',id=friend.id)}}"><span class="friend-name">{{friend.name}}</span></a>
 
+                </div>
+                {% endfor %} {% endif %}
             </div>
-            <span class="title">Albums</span>
-            <div class="ui tiny images albums-block">
-                <img class="ui image" src="/static/images/img.jpg">
-                <img class="ui image" src="/static/images/img.jpg">
-                <img class="ui image" src="/static/images/img.jpg">
-                <img class="ui image" src="/static/images/img.jpg">
-            </div>
+
         </div>
         <div class="profile-info ten wide column">
             <div class="ui segment">
@@ -84,15 +83,17 @@
             <div class="ui form">
                 <div class="field">
                     <label>What's new?</label>
-                    <textarea rows="2"></textarea>
+                    <form method="post" enctype="multipart/form-data" class='image-form'>
+                        {{ postform.hidden_tag() }}
+                        <p> {{ postform.text() }} <br>
                 </div>
-                <button class="ui small green button">Submit</button>
-
+                <p> {{ postform.postimage() }} <br> <br> {{ postform.submit() }}</p>
+                </form>
             </div>
             <span class="title">My News Feed</span>
 
             <div class="ui feed segment">
-                {% if variable|length %} {% for post in posts %}
+                {% if posts is not none %} {% if posts|length %} {% for post in posts %}
                 <div class="event">
                     <div class="label">
                         <img src="/static/images/img.jpg">
@@ -107,14 +108,26 @@
                         <div class="extra text">
                             {{post.text}}
                         </div>
+                        <div>
+                            {% if post.image_path %}
+                            <img , src="{{post.image_path}}"> {% else %}
+                            <img class="ui tiny circular image" src=""> {% endif %}
+                        </div>
                         <div class="meta">
-                            <a class="like">
-                                5 Likes
-                            </a>
+                            <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
+                                <button class="ui teal mini button likebutton" id="{{post.postid}}">
+                                    <i class="heart icon"></i> Like
+                                </button>
+
+                                <a class="ui basic teal left pointing label like_{{post.postid}}">
+                                    {{post["likes"]}} Likes
+                                </a>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %}
+                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %} {% endif %}
             </div>
 
         </div>

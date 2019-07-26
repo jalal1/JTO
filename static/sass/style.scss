@@ -5,6 +5,22 @@
     .ui.menu.header-menu {
         border-radius: 0;
         height: 45px;
+        background: #4a76a8;
+        border-bottom: 1px solid #4872a3;
+
+        .item:before{
+            width:unset;
+        }
+        
+    }
+
+    .search{
+        padding: 12px;
+    }
+
+    .search-tag{
+        margin-bottom:10px;
+        font-weight: 500;
     }
 
     .ui.vertical.menu.secondary-menu .item:before {
@@ -25,9 +41,38 @@
         border: none;
         box-shadow: none;
 
-        i{
+        .item > i{
             float: unset;
             margin: 0 6px 0 0;
+        }
+    }
+
+    #upload{
+        padding: 5px;
+        border: 2px solid #4caf50;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #fff;
+        background-color: #4caf50;
+    }
+
+    #userimage{
+        border: 1px solid #4caf50;
+        border-radius: 4px;
+        padding: 4px;
+        background-color: #4caf50;
+        color: #4caf50;
+        width: 104px;
+
+        > input{
+            background-color: #4caf50;
+        }
+    }
+
+    .image-form{
+        h4{
+            margin-top:12px;
         }
     }
 
