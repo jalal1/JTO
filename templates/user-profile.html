@@ -4,15 +4,17 @@
 <div class="profile-section thirteen wide column">
     <div class="ui grid">
         <div class="images-section six wide column">
-            <img class="ui small image" src="{{user.image_path}}">
+            <img class="ui small image" src="{{user.image_path}}"> {% if userimageform is not none %}
             <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data">
+
                 {{ userimageform.hidden_tag() }}
                 <p>{{ userimageform.userimage }} <br> {{ userimageform.upload() }}</p>
                 </p>
             </form>
+            {% endif %}
             <span class="title">Friends</span>
             <div class="prof-friends">
-                {% for friend in friends %}
+                {% if friends is not none %} {% for friend in friends %}
                 <div class="prof-friend">
                     {% if friend.image_path %}
                     <img class="ui tiny circular image" src="{{friend.image_path}}"> {% else %}
@@ -20,8 +22,7 @@
                     <a href="{{url_for('profile',id=friend.id)}}"><span class="friend-name">{{friend.name}}</span></a>
 
                 </div>
-                {% endfor %}
-
+                {% endfor %} {% endif %}
             </div>
             <span class="title">Albums</span>
             <div class="ui tiny images albums-block">
@@ -95,7 +96,7 @@
             <span class="title">My News Feed</span>
 
             <div class="ui feed segment">
-                {% if posts|length %} {% for post in posts %}
+                {% if posts is not none %} {% if posts|length %} {% for post in posts %}
                 <div class="event">
                     <div class="label">
                         <img src="/static/images/img.jpg">
@@ -117,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %}
+                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %} {% endif %}
             </div>
 
         </div>

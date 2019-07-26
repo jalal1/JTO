@@ -26,7 +26,8 @@ def search():
     content = request.get_json()
     result = service.user.Search(content['text'])
     for user in result:
-        users.append(user.name)
+        username_userid = str(user.id)+"-"+user.name
+        users.append(username_userid)
     users_obj = {}
     users_obj["searchresult"] = users
     json_data = json.dumps(users_obj)
@@ -128,7 +129,7 @@ def get_friends():
 @app.route("/profile/<id>/<img_url>")
 @login_required
 def profile(id,img_url=None):
-    friends = user = recentposts = status =   ""
+    friends = user = recentposts = status = userimageform =   None
     # Get the profile for the user using the Id
     user = service.user.GetUserById(int(id))
     # Check the friendship status

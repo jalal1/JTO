@@ -2,6 +2,7 @@ $(document).ready(function() {
     main();
 });
 
+
 var main = function() {
 
     $("#search_box").keyup(function() {
@@ -16,12 +17,25 @@ var main = function() {
             success: function(result) {
                 $("#search_result").empty()
                 users = result.searchresult
-                users.forEach(function(username) {
-                    $("#search_result").append(username).append("<br>")
+                users.forEach(function(result) {
+
+                    userid = result.split('-')[0]
+                    username = result.split('-')[1]
+
+                    var link = $('<a>', {
+                        text: username,
+                        title: username,
+                        href: window.location.origin + '/profile/' + userid
+                            //click: function() { GotoProfile(userid); return false; }
+                    })
+                    $("#search_result").append(link).append("<br>")
+
                 });
             }
         })
     });
+
+
 
     //like function
     $('.likebutton').each(function() {
