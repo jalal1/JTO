@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import os
 import secrets
 from application import app, db, bcrypt, login_manager
-=======
 from app import app, db, bcrypt, login_manager
->>>>>>> a57bc854136de8c5fcf844e264e56709bde4b934
 import service.user,service.post,service.relation,service.general
 import json
 import test
@@ -228,13 +225,8 @@ def login():
             login_user(user,remember=form.remember.data)
             #session['currentuserid'] = user.id
             #session['currentusername'] = user.name
-<<<<<<< HEAD
-            return render_template('index.html', title='home',currentuser=current_user,newposts = GetRecentPosts())
-=======
-
             #return render_template('index.html', title='home',currentuser=current_user,newposts = GetRecentPosts())
             return main()
->>>>>>> a57bc854136de8c5fcf844e264e56709bde4b934
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
 
