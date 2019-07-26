@@ -54,12 +54,14 @@ class User(db.Model,UserMixin):
     created_at = db.Column(db.DateTime,default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
     image_path = db.Column(db.String(200), nullable=True)
+    #profile_image = db.Column(db.String(200), nullable=True,default='default.jpg')
+
+def __repr__(self):
+        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
    # post = db.relationship('Post', backref='author', lazy=True)
     
-    """one to many relationship. Post Attribute has a relationship to the Post model
-       backref is allows us to do is -> when we have a post we can simply use this 
-       author attribute to get the user who created the post
-    """
+   
     #relationships = db.relationship('RelationshipModel', lazy='dynamic')
 
 class Post(BaseModel, db.Model):
@@ -89,3 +91,5 @@ class Relationship(BaseModel, db.Model):
     action_by = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime,index=True, default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
+
+
