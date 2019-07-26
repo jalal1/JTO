@@ -40,9 +40,6 @@ class BaseModel(db.Model,UserMixin):
  #'without explicitly modifying it'''
 
 
-
-
-
 class User(db.Model,UserMixin):
     """Model for the users table"""
     __tablename__ = 'users'
@@ -54,6 +51,12 @@ class User(db.Model,UserMixin):
     created_at = db.Column(db.DateTime,default=datetime.utcnow)
     modified_at = db.Column(db.DateTime)
     image_path = db.Column(db.String(200), nullable=True)
+    weight = db.Column(db.String(5),index = True , nullable=True) 
+    birthday = db.Column(db.DateTime,index = True , nullable=True)
+    city = db.Column(db.String(20),index = True, nullable = True)
+    interest = db.Column(db.String(30), index = True, nullable = True)
+    languages = db.Column(db.String(10), index = True, nullable = True)
+    
     #profile_image = db.Column(db.String(200), nullable=True,default='default.jpg')
 
 def __repr__(self):
