@@ -1,7 +1,6 @@
 import os
 import secrets
 from application import app, db, bcrypt, login_manager
-from app import app, db, bcrypt, login_manager
 import service.user,service.post,service.relation,service.general
 import json
 import test
