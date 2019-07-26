@@ -1,11 +1,13 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField,FileField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,FileField,TextAreaField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from models import User
 
 class PostForm(FlaskForm):
-    text = StringField('text', validators=[DataRequired()])
-    upload = SubmitField('Upload')
+    text = TextAreaField('text', validators=[DataRequired()],render_kw={'rows':'4'})
+    submit = SubmitField('Submit',render_kw={'class': 'ui small green button'})
+    #upload = SubmitField('Upload and Submit',render_kw={'class': 'ui small green button'})
+    postimage = FileField('upload image')
 
 class UploadUserImageForm(FlaskForm):
 

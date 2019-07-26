@@ -6,12 +6,13 @@ from sqlalchemy import desc
 import service.relation
 import operator
 
-def AddPost(text,userid):
+def AddPost(text,userid,url=None):
 
     try:
         post = Post()
         post.text = text
         post.user_id = userid
+        post.image_path = url
 
         db.session.add(post)
         db.session.commit()
@@ -40,6 +41,7 @@ def GetNewPosts(userid):
         post["post"] = userspostsquery[0].text
         post["createdate"] = userspostsquery[0].created_at
         post["likes"] = userspostsquery[0].likes
+        post["image_path"] = userspostsquery[0].image_path
         result.append(post)
 
     # Then get user's friends posts
@@ -56,6 +58,7 @@ def GetNewPosts(userid):
             post["post"] = friendspostsquery[0].text
             post["createdate"] = friendspostsquery[0].created_at
             post["likes"] = friendspostsquery[0].likes
+            post["image_path"] = friendspostsquery[0].image_path
             result.append(post)
             
     result.sort(key=operator.itemgetter('createdate'), reverse=True)

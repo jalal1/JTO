@@ -10,13 +10,24 @@ from flask_login import login_user, current_user, logout_user,login_required
 
 
 
-@app.route("/") 
-@app.route("/index")
+@app.route("/",methods=['GET', 'POST']) 
+@app.route("/index",methods=['GET', 'POST'])
 @login_required
 def main():
 
     if current_user.is_authenticated:
-        return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
+        postform = PostForm()
+        if postform.validate_on_submit():
+            if postform.postimage:
+                file = postform.postimage.data 
+                url = service.general.UploadImage(file)
+                newpost = service.post.AddPost(postform.text.data,current_user.id,url)
+            
+            else:
+                newpost = service.post.AddPost(postform.text.data,current_user.id)
+ 
+        return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts(),postform = postform)
+
     else:
         return redirect(url_for('login'))
     
@@ -67,12 +78,12 @@ def upload_image():
     return render_template('upload.html', title='Upload image', form=form)
 
 @app.route("/user/upload/",methods=['POST'])
-def upload_user_image():
+def upload_user_image(id=None):
 
     result =""
     form = UploadUserImageForm()
     if form.validate_on_submit():
-        img_url = service.general.UploadImage(form.userimage)
+        img_url = service.general.UploadImage(form.userimage.data)
         if img_url:
             #update user
             service.user.UpdateProfileImage(current_user.id,img_url)
@@ -80,9 +91,9 @@ def upload_user_image():
         else:
             # should modifty this case!!!
             return redirect(url_for('profile',id=current_user.id))
-    else:
+    #else:
         # should modifty this case!!!
-        return redirect(url_for('profile',id=current_user.id))
+        #return redirect(url_for('profile',id=current_user.id))
 
 @app.route("/relation/add/<id>")
 @login_required
@@ -125,11 +136,11 @@ def get_friends():
         return render_template('friends.html',Notfriends=Notfriends,friends=friends,user=current_user)
 
     
-@app.route("/profile/<id>/")
-@app.route("/profile/<id>/<img_url>")
+@app.route("/profile/<id>/",methods=['GET', 'POST'])
+@app.route("/profile/<id>/<img_url>",methods=['GET', 'POST'])
 @login_required
 def profile(id,img_url=None):
-    friends = user = recentposts = status = userimageform =   None
+    friends = user = recentposts = status = userimageform = postform =  None
     # Get the profile for the user using the Id
     user = service.user.GetUserById(int(id))
     # Check the friendship status
@@ -146,6 +157,7 @@ def profile(id,img_url=None):
                     friends = service.relation.GetFriends(int(id))
                     recentposts = service.post.Getlast10posts(int(id))
                     userimageform = UploadUserImageForm()
+                    postform = PostForm()
                 # if pending, and the action done by profile user id, then I can accept or not.
                 elif relation.status == 1 and relation.action_by ==int(id):
                     status = "Accept/Delete"
@@ -164,11 +176,22 @@ def profile(id,img_url=None):
             # it means this is my profile
             status = "Me"
             friends = service.relation.GetFriends(int(id))
-            recentposts = service.post.Getlast10posts(int(id))
+            
             # show upload profile image form
             userimageform = UploadUserImageForm()
+            postform = PostForm()
+            if postform.validate_on_submit():
+                if postform.postimage:
+                    file = postform.postimage.data 
+                    url = service.general.UploadImage(file)
+                    newpost = service.post.AddPost(postform.text.data,current_user.id,url)
+                
+                else:
+                    newpost = service.post.AddPost(postform.text.data,current_user.id)
+                    
+            recentposts = service.post.Getlast10posts(int(id))
   
-    return render_template('user-profile.html',user = user,current_user = current_user,friends = friends,posts = recentposts,status=status,userimageform = userimageform)
+    return render_template('user-profile.html',user = user,current_user = current_user,friends = friends,posts = recentposts,status=status,userimageform = userimageform,postform = postform)
 
 @app.route("/test/load")
 def load():
@@ -192,7 +215,8 @@ def like():
 def login():
 
     if current_user.is_authenticated:
-        return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
+        return main()
+        #return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
 
     form = LoginForm()
     if form.validate_on_submit():
@@ -202,7 +226,8 @@ def login():
             #session['currentuserid'] = user.id
             #session['currentusername'] = user.name
 
-            return render_template('index.html', title='home',currentuser=current_user,newposts = GetRecentPosts())
+            #return render_template('index.html', title='home',currentuser=current_user,newposts = GetRecentPosts())
+            return main()
         else:
             flash('Login Unsuccessful. Please check username and password', 'danger')
 
@@ -217,7 +242,8 @@ def GetRecentPosts():
 @app.route("/register", methods=['GET', 'POST'])    
 def register():
     if current_user.is_authenticated:
-        return render_template('index.html', title='Login', form=form)
+        #return render_template('index.html', title='Login', form=form)
+        return main()
     form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')

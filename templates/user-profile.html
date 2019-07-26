@@ -5,16 +5,11 @@
     <div class="ui grid">
         <div class="images-section six wide column">
             <img class="ui small image" src="{{user.image_path}}"> {% if userimageform is not none %}
-            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data"
-                class='image-form'>
+            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data" class='image-form'>
 
                 <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
 
-                {{ userimageform.hidden_tag() }}
-
-                {{ userimageform.userimage }}
-
-                {{ userimageform.upload() }}
+                {{ userimageform.hidden_tag() }} {{ userimageform.userimage }} {{ userimageform.upload() }}
 
             </form>
             {% endif %}
@@ -88,10 +83,12 @@
             <div class="ui form">
                 <div class="field">
                     <label>What's new?</label>
-                    <textarea rows="2"></textarea>
+                    <form method="post" enctype="multipart/form-data" class='image-form'>
+                        {{ postform.hidden_tag() }}
+                        <p> {{ postform.text() }} <br>
                 </div>
-                <button class="ui small green button">Submit</button>
-
+                <p> {{ postform.postimage() }} <br> <br> {{ postform.submit() }}</p>
+                </form>
             </div>
             <span class="title">My News Feed</span>
 
@@ -111,6 +108,11 @@
                         <div class="extra text">
                             {{post.text}}
                         </div>
+                        <div>
+                            {% if post.image_path %}
+                            <img , src="{{post.image_path}}"> {% else %}
+                            <img class="ui tiny circular image" src=""> {% endif %}
+                        </div>
                         <div class="meta">
                             <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
                                 <button class="ui teal mini button likebutton" id="{{post.postid}}">
@@ -125,8 +127,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the
-                same Wavelength! {% endif %} {% endif %}
+                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %} {% endif %}
             </div>
 
         </div>
