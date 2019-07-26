@@ -16,25 +16,24 @@
 
 <body id="home-page">
     <div class="ui inverted menu header-menu">
-        <a href="{{ url_for('main')}}" class="header item">
-            JTO (Fitness Social Network)
+        <a href="{{ url_for('main')}}" class="item" style="padding: 4px 24px;
+        font-weight: 500;">
+            Fitness Social Network
         </a>
-        <div class="ui simple right aligned dropdown item">
-            {{ current_user.name }} <i class="dropdown icon"></i>
-            <div class="menu">
-                <a class="item" href="#">Link Item</a>
-                <a class="item" href="#">Link Item</a>
-                <div class="divider"></div>
-                <div class="header">Header Item</div>
-                <a class="item" href="#">Link Item</a>
-            </div>
+        <div class="right aligned item">
+            {{ current_user.name }}
+
         </div>
     </div>
     <div class="ui container main-content ui grid">
         <div class="ui vertical menu secondary-menu three wide column">
             <div class="item">
-                <div class="ui input"><input type="text" id="search_box" placeholder="Search..."></div>
+                <div class="ui left icon input">
+                    <input type="text" id="search_box" placeholder="Search users...">
+                    <i class="users icon"></i>
+                </div>
             </div>
+
 
             <a class="item" href="{{url_for('profile',id=current_user.id)}}">
                 <i class="user icon"></i> My Profile

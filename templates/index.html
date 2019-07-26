@@ -26,14 +26,22 @@
                     {{post["post"]}}
                 </div>
                 <div class="meta">
-                    <a class="like_{{post.postid}}">
-                        {{post["likes"]}} Likes
-                    </a>
-                    <button id="{{post.postid}}" class="likebutton">like</button>
+                    <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
+                        <button class="ui teal mini button likebutton" id="{{post.postid}}">
+                            <i class="heart icon"></i> Like
+                        </button>
+
+                        <a class="ui basic teal left pointing label like_{{post.postid}}">
+                            {{post["likes"]}} Likes
+                        </a>
+
+                    </div>
+
                 </div>
             </div>
         </div>
-        {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %}
+        {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same
+        Wavelength! {% endif %}
 
     </div>
 </div>

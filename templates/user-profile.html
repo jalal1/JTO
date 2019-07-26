@@ -5,11 +5,17 @@
     <div class="ui grid">
         <div class="images-section six wide column">
             <img class="ui small image" src="{{user.image_path}}"> {% if userimageform is not none %}
-            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data">
+            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data"
+                class='image-form'>
+
+                <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
 
                 {{ userimageform.hidden_tag() }}
-                <p>{{ userimageform.userimage }} <br> {{ userimageform.upload() }}</p>
-                </p>
+
+                {{ userimageform.userimage }}
+
+                {{ userimageform.upload() }}
+
             </form>
             {% endif %}
             <span class="title">Friends</span>
@@ -24,13 +30,7 @@
                 </div>
                 {% endfor %} {% endif %}
             </div>
-            <span class="title">Albums</span>
-            <div class="ui tiny images albums-block">
-                <img class="ui image" src="/static/images/img.jpg">
-                <img class="ui image" src="/static/images/img.jpg">
-                <img class="ui image" src="/static/images/img.jpg">
-                <img class="ui image" src="/static/images/img.jpg">
-            </div>
+
         </div>
         <div class="profile-info ten wide column">
             <div class="ui segment">
@@ -112,13 +112,21 @@
                             {{post.text}}
                         </div>
                         <div class="meta">
-                            <a class="like">
-                                5 Likes
-                            </a>
+                            <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
+                                <button class="ui teal mini button likebutton" id="{{post.postid}}">
+                                    <i class="heart icon"></i> Like
+                                </button>
+
+                                <a class="ui basic teal left pointing label like_{{post.postid}}">
+                                    {{post["likes"]}} Likes
+                                </a>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %} {% endif %}
+                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the
+                same Wavelength! {% endif %} {% endif %}
             </div>
 
         </div>
