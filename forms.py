@@ -1,9 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField,FileField,TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,FileField,TextAreaField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from models import User
 from flask_login import current_user
 from flask_wtf.file import FileField, FileAllowed
+from datetime import date
 
 class PostForm(FlaskForm):
     text = TextAreaField('text', validators=[DataRequired()],render_kw={'rows':'4'})
@@ -53,6 +54,16 @@ class UpdateAccountForm(FlaskForm):
                            validators=[DataRequired(), Length(min=2, max=20)])
     password = PasswordField('password',
                         validators=[DataRequired()])
+    weight = StringField('weight',
+                        validators=[DataRequired()])
+    city = StringField('city',
+                        validators=[DataRequired()])
+    interest = StringField('interest',
+                        validators=[DataRequired()])
+    languages = StringField('languages',
+                        validators=[DataRequired()])
+    birthday = DateField('Start Date',default=date.today(), format='%m/%d/%Y')
+    
     picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Update')
 
