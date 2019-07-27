@@ -12,7 +12,7 @@
 - Initialize your EB CLI : (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html)
     - eb init
     - eb creat [app-name] ( needed for each branch)
-    - Exclude pypiwin32 and pywin32 from requirements.txt ( not needed!)
+    - ( not needed!) Exclude pypiwin32 and pywin32 from requirements.txt 
     - eb deploy [jtoname] : example eb deploy jto11 ( should be more than 4)
     - eb terminate : to remove all resourses
 
