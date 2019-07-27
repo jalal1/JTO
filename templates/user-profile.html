@@ -4,7 +4,8 @@
 <div class="profile-section thirteen wide column">
     <div class="ui grid">
         <div class="images-section six wide column">
-            <img class="ui small image" src="{{user.image_path}}"> {% if userimageform is not none %}
+            {% if userimageform is not none %}
+            <img class="ui small image" src="{{user.image_path}}">
             <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data" class='image-form'>
 
                 <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
@@ -84,11 +85,12 @@
                 <div class="field">
                     <label>What's new?</label>
                     <form method="post" enctype="multipart/form-data" class='image-form'>
-                        {{ postform.hidden_tag() }}
+                        {% if postform %} {{ postform.hidden_tag() }}
                         <p> {{ postform.text() }} <br>
                 </div>
                 <p> {{ postform.postimage() }} <br> <br> {{ postform.submit() }}</p>
                 </form>
+                {% endif %}
             </div>
             <span class="title">My News Feed</span>
 
