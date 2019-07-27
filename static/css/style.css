@@ -2,6 +2,16 @@
   width: 100%;
 }
 
+#home-page .flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#home-page .img-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #home-page .ui.menu.header-menu {
   border-radius: 0;
   height: 45px;
@@ -39,21 +49,24 @@
   float: unset;
   margin: 0 6px 0 0;
 }
-#home-page #upload {
+#home-page #upload, #home-page #postimage {
   padding: 5px;
-  border: 2px solid #4caf50;
+  border: 2px solid #4872a3;
   border-radius: 4px;
   text-transform: uppercase;
   font-weight: 500;
   color: #fff;
-  background-color: #4caf50;
+  background-color: #4872a3;
+}
+#home-page #postimage {
+  width: 109px;
 }
 #home-page #userimage {
-  border: 1px solid #4caf50;
+  border: 1px solid #4872a3;
   border-radius: 4px;
   padding: 4px;
-  background-color: #4caf50;
-  color: #4caf50;
+  background-color: #4872a3;
+  color: #4872a3;
   width: 104px;
 }
 #home-page #userimage > input {
@@ -153,7 +166,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  margin: 100px 20px;
 }
 #sign-page .login-form form {
   width: 350px;

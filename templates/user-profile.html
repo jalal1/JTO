@@ -4,8 +4,11 @@
 <div class="profile-section thirteen wide column">
     <div class="ui grid">
         <div class="images-section six wide column">
-            {% if userimageform is not none %}
-            <img class="ui small image" src="{{user.image_path}}">
+            <div class="img-block">
+                {% if userimageform is not none %}
+                <img class="ui small image" src="{{user.image_path}}">
+
+            </div>
             <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data" class='image-form'>
 
                 <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
@@ -112,8 +115,8 @@
                         </div>
                         <div>
                             {% if post.image_path %}
-                            <img , src="{{post.image_path}}"> {% else %}
-                            <img class="ui tiny circular image" src=""> {% endif %}
+                            <img class="ui tiny image" src="{{post.image_path}}"> {% else %}
+                            <img class="ui tiny image" src=""> {% endif %}
                         </div>
                         <div class="meta">
                             <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
