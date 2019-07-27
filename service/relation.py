@@ -73,9 +73,9 @@ def GetAll(id):
 
 
 def GetNotFriends(id):
-    q1 = db.session.query(User).add_columns(User.id,User.name,Relationship.status).join(
+    q1 = db.session.query(User).add_columns(User.id,User.name,Relationship.status,Relationship.action_by).join(
         Relationship, User.id == Relationship.user1_Id).filter(Relationship.user2_Id == id, Relationship.status!=2)
-    q2 = db.session.query(User).add_columns(User.id,User.name,Relationship.status).join(
+    q2 = db.session.query(User).add_columns(User.id,User.name,Relationship.status,Relationship.action_by).join(
         Relationship, User.id == Relationship.user2_Id).filter(Relationship.user1_Id == id, Relationship.status!=2)
     result = q1.union(q2)
 

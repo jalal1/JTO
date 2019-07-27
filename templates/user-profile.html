@@ -40,7 +40,18 @@
                     {% if current_user.id == user.id %}
                     My Profile
                     {% else %}
-                    <button>{{status}}</button>
+                    
+                    <form method="post" enctype="multipart/form-data" class='image-form'>
+                        {% if relationform %} {{ relationform.hidden_tag() }}
+                        {% if status == "Add Friend" %}
+                <p> You are not friends now! {{ relationform.addfriend }}</p>
+                {% else %}
+                Status now is {{status}} !!
+                {% endif %}
+                {% endif %}
+                </form>
+                
+
                     {% endif %}
                 </span>
                 <div class="profile-details">
