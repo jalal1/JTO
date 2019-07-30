@@ -4,7 +4,11 @@
 <div class="profile-section thirteen wide column">
     <div class="ui grid">
         <div class="images-section six wide column">
-            <img class="ui small image" src="{{user.image_path}}"> {% if userimageform is not none %}
+            <div class="img-block">
+                {% if userimageform is not none %}
+                <img class="ui small image" src="{{user.image_path}}">
+
+            </div>
             <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data" class='image-form'>
 
                 <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
@@ -36,7 +40,18 @@
                     {% if current_user.id == user.id %}
                     My Profile
                     {% else %}
-                    <button>{{status}}</button>
+                    
+                    <form method="post" enctype="multipart/form-data" class='image-form'>
+                        {% if relationform %} {{ relationform.hidden_tag() }}
+                        {% if status == "Add Friend" %}
+                <p> You are not friends now! {{ relationform.addfriend }}</p>
+                {% else %}
+                Status now is {{status}} !!
+                {% endif %}
+                {% endif %}
+                </form>
+                
+
                     {% endif %}
                 </span>
                 <div class="profile-details">
@@ -84,11 +99,12 @@
                 <div class="field">
                     <label>What's new?</label>
                     <form method="post" enctype="multipart/form-data" class='image-form'>
-                        {{ postform.hidden_tag() }}
+                        {% if postform %} {{ postform.hidden_tag() }}
                         <p> {{ postform.text() }} <br>
                 </div>
                 <p> {{ postform.postimage() }} <br> <br> {{ postform.submit() }}</p>
                 </form>
+                {% endif %}
             </div>
             <span class="title">My News Feed</span>
 
@@ -110,8 +126,8 @@
                         </div>
                         <div>
                             {% if post.image_path %}
-                            <img , src="{{post.image_path}}"> {% else %}
-                            <img class="ui tiny circular image" src=""> {% endif %}
+                            <img class="ui tiny image" src="{{post.image_path}}"> {% else %}
+                            <img class="ui tiny image" src=""> {% endif %}
                         </div>
                         <div class="meta">
                             <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
