@@ -5,6 +5,8 @@ $(document).ready(function () {
 
 var main = function () {
 
+    
+
     $("#search_box").keyup(function () {
         var text = {
             "text": $(this).val()
@@ -41,6 +43,8 @@ var main = function () {
 
 
 
+
+
     //like function
     $('.likebutton').each(function () {
         $(this).click(function () {
@@ -68,7 +72,7 @@ var main = function () {
 
     });
 
-  
+
 
     //like function
     $('.status_button').each(function () {

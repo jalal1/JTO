@@ -64,7 +64,7 @@
         }
     }
 
-    #upload, #postimage {
+    #upload {
         padding: 5px;
         border: 2px solid #4872a3;
         border-radius: 4px;
@@ -74,18 +74,12 @@
         background-color: #4872a3;
     }
 
-    #postimage{
-        width: 109px;
-    }
-    
+
 
     #userimage {
-        border: 1px solid #4872a3;
         border-radius: 4px;
         padding: 4px;
-        background-color: #4872a3;
-        color: #4872a3;
-        width: 104px;
+        margin-bottom:10px;
 
         >input {
             background-color: #4caf50;
@@ -111,6 +105,11 @@
         .prof-friend {
             margin-right: 16px;
             text-align: center;
+
+            .ui.image{
+                max-height: 51px;
+                max-width: 51px;
+            }
 
             span {
                 font-weight: 400;
