@@ -14,14 +14,14 @@
     <script src="{{ url_for('static',filename='js/search.js') }}"></script>
 </head>
 
-<body id="home-page">
+<body id="home-page" onload="checkEdits()">
     <div class="ui inverted menu header-menu">
         <a href="{{ url_for('main')}}" class="item" style="padding: 4px 24px;
         font-weight: 500;">
             Fitness Social Network
         </a>
         <div class="right aligned item">
-            {{ current_user.name }}
+            Hello, {{ current_user.name }}
         </div>
     </div>
     <div class="ui container main-content ui grid">

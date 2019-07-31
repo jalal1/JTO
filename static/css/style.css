@@ -49,7 +49,7 @@
   float: unset;
   margin: 0 6px 0 0;
 }
-#home-page #upload, #home-page #postimage {
+#home-page #upload {
   padding: 5px;
   border: 2px solid #4872a3;
   border-radius: 4px;
@@ -58,16 +58,10 @@
   color: #fff;
   background-color: #4872a3;
 }
-#home-page #postimage {
-  width: 109px;
-}
 #home-page #userimage {
-  border: 1px solid #4872a3;
   border-radius: 4px;
   padding: 4px;
-  background-color: #4872a3;
-  color: #4872a3;
-  width: 104px;
+  margin-bottom: 10px;
 }
 #home-page #userimage > input {
   background-color: #4caf50;
@@ -87,6 +81,10 @@
 #home-page .prof-friends .prof-friend {
   margin-right: 16px;
   text-align: center;
+}
+#home-page .prof-friends .prof-friend .ui.image {
+  max-height: 51px;
+  max-width: 51px;
 }
 #home-page .prof-friends .prof-friend span {
   font-weight: 400;
