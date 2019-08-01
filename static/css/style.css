@@ -2,6 +2,16 @@
   width: 100%;
 }
 
+#home-page .flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#home-page .img-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #home-page .ui.menu.header-menu {
   border-radius: 0;
   height: 45px;
@@ -41,20 +51,17 @@
 }
 #home-page #upload {
   padding: 5px;
-  border: 2px solid #4caf50;
+  border: 2px solid #4872a3;
   border-radius: 4px;
   text-transform: uppercase;
   font-weight: 500;
   color: #fff;
-  background-color: #4caf50;
+  background-color: #4872a3;
 }
 #home-page #userimage {
-  border: 1px solid #4caf50;
   border-radius: 4px;
   padding: 4px;
-  background-color: #4caf50;
-  color: #4caf50;
-  width: 104px;
+  margin-bottom: 10px;
 }
 #home-page #userimage > input {
   background-color: #4caf50;
@@ -74,6 +81,10 @@
 #home-page .prof-friends .prof-friend {
   margin-right: 16px;
   text-align: center;
+}
+#home-page .prof-friends .prof-friend .ui.image {
+  max-height: 51px;
+  max-width: 51px;
 }
 #home-page .prof-friends .prof-friend span {
   font-weight: 400;
@@ -153,7 +164,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  margin: 100px 20px;
 }
 #sign-page .login-form form {
   width: 350px;

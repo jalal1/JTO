@@ -5,7 +5,7 @@ import service.user,service.post,service.relation,service.general
 import json
 import test
 from flask import render_template,request,url_for, flash, redirect,session
-from forms import PostForm, RegistrationForm,LoginForm,UploadUserImageForm, UpdateAccountForm
+from forms import PostForm, RegistrationForm,LoginForm,UploadUserImageForm, UpdateAccountForm, RelationForm
 from models import User, Post
 from flask_login import login_user, current_user, logout_user,login_required
 from PIL import Image
@@ -132,14 +132,14 @@ def get_friends():
     friends = service.relation.GetFriends(current_user.id)
     Notfriends = service.relation.GetNotFriends(current_user.id)
     if current_user and friends:
-        return render_template('friends.html',Notfriends=Notfriends,friends=friends,user=current_user)
+        return render_template('friends.html',Notfriends=Notfriends,friends=friends,current_user=current_user)
 
     
 @app.route("/profile/<id>/",methods=['GET', 'POST'])
 @app.route("/profile/<id>/<img_url>",methods=['GET', 'POST'])
 @login_required
 def profile(id,img_url=None):
-    friends = user = recentposts = status = userimageform = postform =  None
+    friends = user = recentposts = status = userimageform = postform = relationform = None
     # Get the profile for the user using the Id
     user = service.user.GetUserById(int(id))
     # Check the friendship status
@@ -163,10 +163,16 @@ def profile(id,img_url=None):
                 # if pending, and the action by me, then just show "Pending"
                 elif relation.status == 1 and relation.action_by == current_user.id:
                     status = "Pending"
+                    relationform = RelationForm()
                 elif relation.status == 0:
                     status = "Add Friend"
             else:
                 status = "Add Friend"
+                relationform = RelationForm()
+                if relationform.validate_on_submit():
+                    if relationform.addfriend.data:
+                        result = service.relation.UpdateRelation(current_user.id,int(id),1,current_user.id) 
+                        status = "Pending"
 
             
 
@@ -190,7 +196,7 @@ def profile(id,img_url=None):
                     
             recentposts = service.post.Getlast10posts(int(id))
   
-    return render_template('user-profile.html',user = user,current_user = current_user,friends = friends,posts = recentposts,status=status,userimageform = userimageform,postform = postform)
+    return render_template('user-profile.html',user = user,current_user = current_user,friends = friends,posts = recentposts,status=status,userimageform = userimageform,postform = postform,relationform=relationform)
 
 @app.route("/test/load")
 def load():
@@ -215,7 +221,7 @@ def login():
 
     if current_user.is_authenticated:
         return main()
-        #return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts())
+        #return render_template('index.html', title='home',current_user=current_user,newposts = GetRecentPosts(),userimageform = userimageform,postform = postform)
 
     form = LoginForm()
     if form.validate_on_submit():

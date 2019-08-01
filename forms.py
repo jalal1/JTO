@@ -17,6 +17,10 @@ class UploadUserImageForm(FlaskForm):
     userimage = FileField('Image file',validators=[DataRequired()])
     upload = SubmitField('Upload')
 
+class RelationForm(FlaskForm):
+
+    addfriend = SubmitField('Add Friend')
+
 #DataRequired - it cannot be empty
 class RegistrationForm(FlaskForm):
     name = StringField('name',

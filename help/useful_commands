@@ -12,10 +12,13 @@
 - Initialize your EB CLI : (https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-flask.html)
     - eb init
     - eb creat [app-name] ( needed for each branch)
-    - Exclude pypiwin32 and pywin32 from requirements.txt ( not needed!)
-    - eb deploy 
+    - ( not needed!) Exclude pypiwin32 and pywin32 from requirements.txt 
+    - eb deploy [jtoname] : example eb deploy jto11 ( should be more than 4)
     - eb terminate : to remove all resourses
 
 - CTRL + F5 to hard refresh the browser, so JS file changes will appear. 
 
 
+create first and then deploy!
+
+eb setenv S3_BUCKET=jto-images S3_KEY=AKIATITNO3I4TZQBATE5 S3_SECRET_ACCESS_KEY=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 SECRET_KEY=ABC888888

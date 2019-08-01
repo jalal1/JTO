@@ -33,7 +33,7 @@ def Getlast10posts(userid):
 def GetNewPosts(userid):
     result = []
     #Get user's last post
-    userspostsquery = db.session.query(Post).filter(Post.user_id == userid).order_by(desc(Post.created_at)).limit(1).all()
+    userspostsquery = db.session.query(Post).filter(Post.user_id == userid).order_by(desc(Post.created_at)).limit(2).all()
     if userspostsquery:
         #post = {"username":username,"post":"","createdate":""}
         post = {}
@@ -50,7 +50,7 @@ def GetNewPosts(userid):
     sortedbydate = []
     for friend in friends:
         #post = {"username":"","post":"","createdate":""}
-        friendspostsquery = db.session.query(Post).filter(Post.user_id == friend.id).order_by(desc(Post.created_at)).limit(1).all()
+        friendspostsquery = db.session.query(Post).filter(Post.user_id == friend.id).order_by(desc(Post.created_at)).limit(2).all()
         if friendspostsquery:
             post = {}
             post["postid"] = friendspostsquery[0].id

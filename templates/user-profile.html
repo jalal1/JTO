@@ -4,8 +4,13 @@
 <div class="profile-section thirteen wide column">
     <div class="ui grid">
         <div class="images-section six wide column">
-            <img class="ui small image" src="{{user.image_path}}"> {% if userimageform is not none %}
-            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data" class='image-form'>
+            <div class="img-block">
+                {% if userimageform is not none %}
+                <img class="ui small image" src="{{user.image_path}}">
+
+            </div>
+            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data"
+                class='image-form'>
 
                 <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
 
@@ -30,13 +35,25 @@
         <div class="profile-info ten wide column">
             <div class="ui segment">
                 <span class='profile-name'>{{user.name}}</span>
-                <span class="profile-status">Loves Fitness and Movies</span>
+                <span class="profile-status" id="edit_five" contenteditable="true">Your status is empty! Add something.</span>
+
 
                 <span class="prof-status">
                     {% if current_user.id == user.id %}
                     My Profile
                     {% else %}
-                    <button>{{status}}</button>
+
+                    <form method="post" enctype="multipart/form-data" class='image-form'>
+                        {% if relationform %} {{ relationform.hidden_tag() }}
+                        {% if status == "Add Friend" %}
+                        <p> You are not friends now! {{ relationform.addfriend }}</p>
+                        {% else %}
+                        Status now is {{status}} !!
+                        {% endif %}
+                        {% endif %}
+                    </form>
+
+
                     {% endif %}
                 </span>
                 <div class="profile-details">
@@ -46,13 +63,15 @@
                         <span>Interests</span>
                         <span>Languages</span>
                     </div>
-                    <div class="prof-data">
-                        <span>{{user.name}}</span>
-                        <span>{{user.name}}</span>
-                        <span>{{user.name}}</span>
-                        <span>{{user.name}}</span>
+                    <div class="prof-data"> 
+                        <span id="edit" contenteditable="true">Empty</span>
+                        <span id="edit_two" contenteditable="true">Empty</span>
+                        <span id="edit_three" contenteditable="true">Empty</span>
+                        <span id="edit_four" contenteditable="true">Empty</span>
                     </div>
                 </div>
+                <input type="button" class="ui tiny button green" value="save my edits" onclick="saveEdits()" />
+                <div id="update" style="margin-top:12px;"> Edit your fields and click to save for the next time</div>
                 <div class="prof-stats ui statistics">
                     <div class="statistic">
                         <div class="value">
@@ -84,11 +103,12 @@
                 <div class="field">
                     <label>What's new?</label>
                     <form method="post" enctype="multipart/form-data" class='image-form'>
-                        {{ postform.hidden_tag() }}
+                        {% if postform %} {{ postform.hidden_tag() }}
                         <p> {{ postform.text() }} <br>
                 </div>
                 <p> {{ postform.postimage() }} <br> <br> {{ postform.submit() }}</p>
                 </form>
+                {% endif %}
             </div>
             <span class="title">My News Feed</span>
 
@@ -110,8 +130,8 @@
                         </div>
                         <div>
                             {% if post.image_path %}
-                            <img , src="{{post.image_path}}"> {% else %}
-                            <img class="ui tiny circular image" src=""> {% endif %}
+                            <img class="ui tiny image" src="{{post.image_path}}"> {% else %}
+                            <img class="ui tiny image" src=""> {% endif %}
                         </div>
                         <div class="meta">
                             <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
@@ -127,12 +147,62 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %} {% endif %}
+                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the
+                same Wavelength! {% endif %} {% endif %}
             </div>
 
         </div>
     </div>
 </div>
+
+<script>
+    function saveEdits() {
+
+        //get the editable element
+        var editElem = document.getElementById("edit");
+        var editElem2 = document.getElementById("edit_two");
+        var editElem3 = document.getElementById("edit_three");
+        var editElem4 = document.getElementById("edit_four");
+        var editElem5 = document.getElementById("edit_five");
+
+        //get the edited element content
+        var userVersion = editElem.innerHTML;
+        var userVersion2 = editElem2.innerHTML;
+        var userVersion3 = editElem3.innerHTML;
+        var userVersion4 = editElem4.innerHTML;
+        var userVersion5 = editElem5.innerHTML;
+
+
+        //save the content to local storage
+        localStorage.userEdits = userVersion;
+        localStorage.userEdits_two = userVersion2;
+        localStorage.userEdits_three = userVersion3;
+        localStorage.userEdits_four = userVersion4;
+        localStorage.userEdits_five = userVersion5;
+
+
+        //write a confirmation to the user
+        document.getElementById("update").innerHTML = "Edits saved!";
+        document.getElementById("update_two").innerHTML = "Edits saved!";
+        document.getElementById("update_three").innerHTML = "Edits saved!";
+        document.getElementById("update_four").innerHTML = "Edits saved!";
+        document.getElementById("update_five").innerHTML = "Edits saved!";
+
+
+    };
+
+    function checkEdits() {
+
+        //find out if the user has previously saved edits
+        if (localStorage.userEdits != null)
+            document.getElementById("edit").innerHTML = localStorage.userEdits;
+            document.getElementById("edit_two").innerHTML = localStorage.userEdits_two;
+            document.getElementById("edit_three").innerHTML = localStorage.userEdits_three;
+            document.getElementById("edit_four").innerHTML = localStorage.userEdits_four;
+            document.getElementById("edit_five").innerHTML = localStorage.userEdits_five;
+
+    }
+</script>
 
 
 {% endblock %}

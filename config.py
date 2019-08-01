@@ -30,7 +30,8 @@ class ProductionConfig(Config):
         'user': 'postgres',
         'pw': '!J.0.0.0',
         'db': 'jtodb',
-        'host': 'jto-instance.cwa9qfrslztl.us-west-2.rds.amazonaws.com',
+        #'host': 'jto-instance.cwa9qfrslztl.us-west-2.rds.amazonaws.com',
+        'host' : 'jtodb1.cdfuep09ddqw.us-east-1.rds.amazonaws.com',
         'port': '5432',
     }
     SQLALCHEMY_DATABASE_URI = 'postgresql://%(user)s:\

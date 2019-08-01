@@ -1,6 +1,6 @@
 {% extends "base.html" %} {% block content %}
 
-<div class="news-feed thirteen wide column">
+<div class="news-feed eight wide column">
     <div class="ui form">
         <div class="field">
             <label>What's new?</label>
@@ -30,8 +30,8 @@
                 </div>
                 <div>
                     {% if post.image_path %}
-                    <img , src="{{post.image_path}}"> {% else %}
-                    <img class="ui tiny circular image" src=""> {% endif %}
+                    <img class="ui small image" src="{{post.image_path}}"> {% else %}
+                    <img class="ui small image" src=""> {% endif %}
                 </div>
                 <div class="meta">
                     <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
@@ -49,10 +49,12 @@
 
             </div>
         </div>
-        {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %}
+        {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same
+        Wavelength! {% endif %}
 
     </div>
 </div>
+
 
 
 
