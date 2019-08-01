@@ -296,7 +296,7 @@ def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
         current_user.name = form.name.data
-        current_user.password = form.password.data
+        current_user.password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         current_user.weight = form.weight.data
         current_user.city = form.city.data
         current_user.interest = form.interest.data
