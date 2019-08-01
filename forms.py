@@ -68,7 +68,7 @@ class UpdateAccountForm(FlaskForm):
                         validators=[DataRequired()])
     birthday = DateField('Start Date',default=date.today(), format='%m/%d/%Y')
     
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
+    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])]) # I didnt use it
     submit = SubmitField('Update')
 
 

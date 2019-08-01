@@ -281,12 +281,10 @@ def save_picture(form_picture):
     _, f_ext = os.path.splitext(form_picture.filename) #pict name and itself
     picture_fn = random_hex + f_ext
     picture_path = os.path.join(app.root_path, 'static/profile_pics', picture_fn)
-
     output_size = (125, 125)
     i = Image.open(form_picture)
     i.thumbnail(output_size)
     i.save(picture_path)
-
     return picture_fn
 
 
@@ -303,7 +301,7 @@ def account():
         current_user.languages = form.languages.data
         current_user.birthday = form.birthday.data
         db.session.commit()
-        flash('Your account has been updated!', 'success')
+        #'Your account has been updated!', 'success'
         return redirect(url_for('account'))
     elif request.method == 'GET':
         form.name.data = current_user.name
@@ -311,7 +309,7 @@ def account():
         current_user.weight = form.weight.data
         current_user.city = form.city.data
         current_user.birthday = form.birthday.data
-    #image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    #image_file = url_for('static', filename='profile_pics/' + current_user.image_file) # I couldnt use it
     return render_template('account.html', title='Account',form=form)
 
 
