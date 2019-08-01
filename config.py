@@ -15,10 +15,10 @@ class DevelopmentConfig(Config):
     TEMPLATES_AUTO_RELOAD = True
     POSTGRES = {
         'user': 'postgres',
-        'pw': 'ov1012',
-        'db': 'jto3',
+        'pw': '1',
+        'db': 'jto',
         'host': 'localhost',
-        'port': '5431',
+        'port': '5432',
     }
     SQLALCHEMY_DATABASE_URI = 'postgresql://%(user)s:\
 %(pw)s@%(host)s:%(port)s/%(db)s' % POSTGRES
