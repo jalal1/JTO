@@ -19,4 +19,16 @@ python manage.py db stamp head
 python manage.py db migrate
 python manage.py db upgrade
 
+====STEPS TO FIX ERRORS WITH MIGRATIONS FOLDER===
+
+1- "drop table alembic_version" from the database
+2- delete migrations folder
+3- python manage.py db migrate
+4- python manage.py db upgrade
+
+==> I removed the migrations folder from the repo, so I guess (hopefully), it will
+solve the problems we are facing today.
+
+
+
 
