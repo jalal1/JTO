@@ -8,7 +8,7 @@ from flask import render_template,request,url_for, flash, redirect,session
 from forms import PostForm, RegistrationForm,LoginForm,UploadUserImageForm, UpdateAccountForm, RelationForm
 from models import User, Post
 from flask_login import login_user, current_user, logout_user,login_required
-from PIL import Image
+#from PIL import Image
 
 @app.route("/",methods=['GET', 'POST']) 
 @app.route("/index",methods=['GET', 'POST'])
