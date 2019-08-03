@@ -9,8 +9,7 @@
                 <img class="ui small image" src="{{user.image_path}}">
 
             </div>
-            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data"
-                class='image-form'>
+            <form action="{{ url_for('upload_user_image') }}" method="post" novalidate enctype="multipart/form-data" class='image-form'>
 
                 <h4 class="ui dividing header">Choose or Change Your Profile Picture</h4>
 
@@ -63,7 +62,7 @@
                         <span>Interests</span>
                         <span>Languages</span>
                     </div>
-                    <div class="prof-data"> 
+                    <div class="prof-data">
                         <span id="edit" contenteditable="true">Empty</span>
                         <span id="edit_two" contenteditable="true">Empty</span>
                         <span id="edit_three" contenteditable="true">Empty</span>
@@ -135,11 +134,11 @@
                         </div>
                         <div class="meta">
                             <div class="ui labeled button mini" style="margin-top:24px;" tabindex="0">
-                                <button class="ui teal mini button likebutton" id="{{post.postid}}">
+                                <button class="ui teal mini button likebutton" id="{{post.id}}">
                                     <i class="heart icon"></i> Like
                                 </button>
 
-                                <a class="ui basic teal left pointing label like_{{post.postid}}">
+                                <a class="ui basic teal left pointing label like_{{post.id}}">
                                     {{post["likes"]}} Likes
                                 </a>
 
@@ -147,8 +146,7 @@
                         </div>
                     </div>
                 </div>
-                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the
-                same Wavelength! {% endif %} {% endif %}
+                {% endfor %} {% else %} Your News Feed is empty Right Now! Add something or add New Friends To Be On the same Wavelength! {% endif %} {% endif %}
             </div>
 
         </div>
@@ -196,10 +194,10 @@
         //find out if the user has previously saved edits
         if (localStorage.userEdits != null)
             document.getElementById("edit").innerHTML = localStorage.userEdits;
-            document.getElementById("edit_two").innerHTML = localStorage.userEdits_two;
-            document.getElementById("edit_three").innerHTML = localStorage.userEdits_three;
-            document.getElementById("edit_four").innerHTML = localStorage.userEdits_four;
-            document.getElementById("edit_five").innerHTML = localStorage.userEdits_five;
+        document.getElementById("edit_two").innerHTML = localStorage.userEdits_two;
+        document.getElementById("edit_three").innerHTML = localStorage.userEdits_three;
+        document.getElementById("edit_four").innerHTML = localStorage.userEdits_four;
+        document.getElementById("edit_five").innerHTML = localStorage.userEdits_five;
 
     }
 </script>

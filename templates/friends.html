@@ -30,9 +30,9 @@
                         <div class="header">{{userrelation.name}}</div>
                     </div>
                     {% if userrelation.status == 1 and userrelation.action_by == current_user.id %}
-                    <p id="{{userrelation.id}}" class="ui tiny button teal" style="margin-left:30px">Waiting acceptance!</p>
+                    <p id="{{userrelation.id}}" class="ui tiny button teal" style="margin-left:30px">Waiting!</p>
                     {% elif userrelation.status == 1 and userrelation.action_by != current_user.id %}
-                    <button id="{{userrelation.id}}" class="status_button ui tiny button teal" style="margin-left:30px">Accept Friendship</button> {% endif %}
+                    <button id="{{userrelation.id}}" class="status_button ui tiny button teal" style="margin-left:30px">Accept</button> {% endif %}
                 </div>
                 {% endfor %}
             </div>
