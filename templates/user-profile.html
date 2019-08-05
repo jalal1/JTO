@@ -39,7 +39,6 @@
 
                 <span class="prof-status">
                     {% if current_user.id == user.id %}
-                    My Profile
                     {% else %}
 
                     <form method="post" enctype="multipart/form-data" class='image-form'>
@@ -63,14 +62,12 @@
                         <span>Languages</span>
                     </div>
                     <div class="prof-data">
-                        <span id="edit" contenteditable="true">Empty</span>
-                        <span id="edit_two" contenteditable="true">Empty</span>
-                        <span id="edit_three" contenteditable="true">Empty</span>
-                        <span id="edit_four" contenteditable="true">Empty</span>
+                        <span>{{ current_user.birthday }}</span>
+                        <span>{{ current_user.city }}</span>
+                        <span>{{ current_user.interest }}</span>
+                        <span>{{ current_user.languages }}</span>
                     </div>
                 </div>
-                <input type="button" class="ui tiny button green" value="save my edits" onclick="saveEdits()" />
-                <div id="update" style="margin-top:12px;"> Edit your fields and click to save for the next time</div>
                 <div class="prof-stats ui statistics">
                     <div class="statistic">
                         <div class="value">
@@ -82,7 +79,7 @@
                     </div>
                     <div class="statistic">
                         <div class="value">
-                            80
+                            {{ current_user.weight }}
                         </div>
                         <div class="label">
                             Weight(kg)
@@ -97,6 +94,8 @@
                         </div>
                     </div>
                 </div>
+                <a class="ui button green mini" href="/account">Edit Profile</a>
+
             </div>
             <div class="ui form">
                 <div class="field">
@@ -153,54 +152,6 @@
     </div>
 </div>
 
-<script>
-    function saveEdits() {
-
-        //get the editable element
-        var editElem = document.getElementById("edit");
-        var editElem2 = document.getElementById("edit_two");
-        var editElem3 = document.getElementById("edit_three");
-        var editElem4 = document.getElementById("edit_four");
-        var editElem5 = document.getElementById("edit_five");
-
-        //get the edited element content
-        var userVersion = editElem.innerHTML;
-        var userVersion2 = editElem2.innerHTML;
-        var userVersion3 = editElem3.innerHTML;
-        var userVersion4 = editElem4.innerHTML;
-        var userVersion5 = editElem5.innerHTML;
-
-
-        //save the content to local storage
-        localStorage.userEdits = userVersion;
-        localStorage.userEdits_two = userVersion2;
-        localStorage.userEdits_three = userVersion3;
-        localStorage.userEdits_four = userVersion4;
-        localStorage.userEdits_five = userVersion5;
-
-
-        //write a confirmation to the user
-        document.getElementById("update").innerHTML = "Edits saved!";
-        document.getElementById("update_two").innerHTML = "Edits saved!";
-        document.getElementById("update_three").innerHTML = "Edits saved!";
-        document.getElementById("update_four").innerHTML = "Edits saved!";
-        document.getElementById("update_five").innerHTML = "Edits saved!";
-
-
-    };
-
-    function checkEdits() {
-
-        //find out if the user has previously saved edits
-        if (localStorage.userEdits != null)
-            document.getElementById("edit").innerHTML = localStorage.userEdits;
-        document.getElementById("edit_two").innerHTML = localStorage.userEdits_two;
-        document.getElementById("edit_three").innerHTML = localStorage.userEdits_three;
-        document.getElementById("edit_four").innerHTML = localStorage.userEdits_four;
-        document.getElementById("edit_five").innerHTML = localStorage.userEdits_five;
-
-    }
-</script>
 
 
 {% endblock %}
