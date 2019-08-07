@@ -23,8 +23,9 @@ python manage.py db upgrade
 
 1- "drop table alembic_version" from the database
 2- delete migrations folder
-3- python manage.py db migrate
-4- python manage.py db upgrade
+3- python manage.py db init
+4- python manage.py db migrate
+5- python manage.py db upgrade
 
 ==> I removed the migrations folder from the repo, so I guess (hopefully), it will
 solve the problems we are facing today.

@@ -16,3 +16,6 @@ sqlalchemy_orm_working_with_joins : https://www.tutorialspoint.com/sqlalchemy/sq
 https://kite.com/python/docs/sqlalchemy.orm.query.Query.union
 
 AWS-Docker : https://linuxacademy.com/blog/amazon-web-services-2/deploying-a-containerized-flask-application-with-aws-ecs-and-docker/
+
+
+SchemaDisplay : https://github.com/sqlalchemy/sqlalchemy/wiki/SchemaDisplay
