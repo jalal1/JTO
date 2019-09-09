@@ -1,0 +1,60 @@
+{% extends "sign-base.html" %}
+
+{% block content %}
+<div class="ui container">
+    <div class="login-form">
+        <form method="POST" action="" class="ui form">
+            <h4 class="ui dividing header">Login</h4>
+
+            {{ form.hidden_tag() }}
+            <div class="field">
+                {{ form.email.label(class="form-control-label") }}
+                {% if form.email.errors %}
+                {{ form.email(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.email.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+
+
+            <div class="field">
+                {{ form.password.label(class="form-control-label") }}
+                {% if form.password.errors %}
+                {{ form.password(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.password.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.password(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="field">
+                <div class="ui checkbox">
+                    {{ form.remember(class="form-check-input") }}
+                    {{ form.remember.label(class="form-check-label") }}
+                </div>
+            </div>
+            <div class="field">
+                {{ form.submit(class="ui button full-width green") }}
+            </div>
+            <div class="ui horizontal divider">
+                Or
+            </div>
+            <a class="ui teal button full-width" href={{url_for('register')}}>
+                Create New Account
+            </a>
+
+        </form>
+    </div>
+
+</div>
+
+
+{% endblock content %}

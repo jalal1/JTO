@@ -1,39 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %} {% block content %}
+<div class="profile-section thirteen wide column" style="margin-top:24px;">
+    <div class="ui grid">
+        <div class="five wide column">
+            <h3 class="ui center aligned icon header">
+                <i class="circular users icon"></i> Friends
+            </h3>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Friends</title>
-</head>
+            <div class="ui middle aligned selection list">
+                {% for friend in friends %}
+                <div class="item">
+                    {% if friend.image_path %}
+                    <img class="ui avatar image" src="{{friend.image_path}}"> {%else%}
+                    <img class="ui avatar image" src="/static/images/img.jpg"> {% endif %}
+                    <div class="content">
+                        <div class="header">{{friend.name}}</div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="five wide column">
+            <h3 class="ui center aligned icon header">
+                <i class="circular street view
+                icon"></i> Users Invitations
+            </h3>
+            <div class="ui middle aligned selection list">
+                {% for userrelation in Notfriends %}
+                <div class="item">
+                    <img class="ui avatar image" src="/static/images/img.jpg">
+                    <div class="content">
+                        <div class="header">{{userrelation.name}}</div>
+                    </div>
+                    {% if userrelation.status == 1 and userrelation.action_by == current_user.id %}
+                    <p id="{{userrelation.id}}" class="ui tiny button teal" style="margin-left:30px">Waiting!</p>
+                    {% elif userrelation.status == 1 and userrelation.action_by != current_user.id %}
+                    <button id="{{userrelation.id}}" class="status_button ui tiny button teal" style="margin-left:30px">Accept</button> {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 
-<body>
-    <h1>Hi, User {{ user }}!</h1>
-    <h2>Your friends are : </h2>
-    <table>
-        <th>Id</th>
-        <th>Name</th>
-        {% for friend in friends %}
-        <tr>
-            <td>{{friend.id}}</td>
-            <td>{{friend.name}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-
-    <h2>All users : </h2>
-    <table>
-        <th>Id</th>
-        <th>Name</th>
-        {% for user in users %}
-        <tr>
-            <td>{{user.id}}</td>
-            <td>{{user.name}}</td>
-            <td>{{user.status}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-
-</html>
+{% endblock %}

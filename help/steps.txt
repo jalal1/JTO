@@ -1,6 +1,6 @@
 - Create new folder "JTO", fork the project in Github and clone it 
 - Create new python enviroment : "python -m venv env" ( for python 3 and above, virtualenv will be installed) (http://flask.pocoo.org/docs/1.0/installation/)
-- Active the enviroment (by this : env/Scripts/activate.bat or when start debugging using vso), then install Flask : "pip install Flask". 
+- Active the enviroment : got to "env/Scripts/" and run "activate.bat" or when start debugging using vso), then install Flask : "pip install Flask". 
 - pip install -r requirements.txt (install all needed packages)
 - Intall Postgresql version 10.9 (https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) 
 - To login to the superuser : psql -U postgres and the password you entered in the installation
@@ -11,6 +11,25 @@
         - Choose one of the both options : 
             - "python manage.py db upgrade --sql > migration.sql" # update the "migration.sql" file with the sql script. Then run manually on the db
             - "python manage.py db upgrade" # update the db automaticaly
+
+
+in case of this error when migrate : " Target database is not up to date."
+
+python manage.py db stamp head
+python manage.py db migrate
+python manage.py db upgrade
+
+====STEPS TO FIX ERRORS WITH MIGRATIONS FOLDER===
+
+1- "drop table alembic_version" from the database
+2- delete migrations folder
+3- python manage.py db init
+4- python manage.py db migrate
+5- python manage.py db upgrade
+
+==> I removed the migrations folder from the repo, so I guess (hopefully), it will
+solve the problems we are facing today.
+
 
 
 

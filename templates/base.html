@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JTO!</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/semantic.min.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{{ url_for('static',filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/semantic.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/search.js') }}"></script>
+</head>
+
+<body id="home-page" onload="checkEdits()">
+    <div class="ui inverted menu header-menu">
+        <a href="{{ url_for('main')}}" class="item" style="padding: 4px 24px;
+        font-weight: 500;">
+            Fitness Social Network
+        </a>
+        <div class="right aligned item">
+            Hello, {{ current_user.name }}
+        </div>
+        <div class="item">
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="ui container main-content ui grid">
+        <div class="ui vertical menu secondary-menu three wide column">
+            <div class="item">
+                <div class="ui left icon input">
+                    <input type="text" id="search_box" placeholder="Search users...">
+                    <i class="users icon"></i>
+                </div>
+            </div>
+            <div class="search" id="search_result"></div>
+
+
+
+            <a class="item" href="{{url_for('profile',id=current_user.id)}}">
+                <i class="user icon"></i> My Profile
+
+            </a>
+            <a class="item" href="/">
+                <i class="newspaper icon"></i> News
+            </a>
+            <a class="item" href="{{url_for('get_friends')}}">
+                <i class="users icon"></i> Friends
+            </a>
+
+        </div>
+        {% block content %}{% endblock %}
+    </div>
+
+
+</body>
+
+</html>

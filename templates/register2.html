@@ -1,0 +1,90 @@
+{% extends "sign-base.html" %}
+{% block content %}
+<div class="ui container">
+
+    <div class="login-form">
+        <form method="POST" action="" class="ui form">
+            <h4 class="ui dividing header">Registration</h4>
+
+            {{ form.hidden_tag()}}
+            <div class="field">
+                {{form.name.label(class="form-control-label")}}
+
+                {% if form.name.errors%}
+                {{form.name(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+
+                    {% for errors in form.name.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.name(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+
+            <div class="field">
+
+                {{form.email.label(class="form-control-label")}}
+                {% if form.email.errors%}
+                {{form.email(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+
+                    {% for errors in form.email.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.email(class="form-control form-control-lg")}}
+                {% endif %}
+
+            </div>
+            <div class="field">
+
+                {{form.password.label(class="form-control-label")}}
+                {% if form.password.errors%}
+                {{form.password(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+
+                    {% for errors in form.password.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.password(class="form-control form-control-lg")}}
+                {% endif %}
+
+            </div>
+
+            <div class="field">
+
+                {{form.confirm_password.label(class="form-control-label")}}
+                {% if form.confirm_password.errors%}
+                {{form.confirm_password(class="form-control form-control-lg is-invalid")}}
+                <div class="invalid-feedback">
+
+                    {% for errors in form.confirm_password.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else%}
+                {{form.confirm_password(class="form-control form-control-lg")}}
+                {% endif %}
+            </div>
+
+            <div class="field">
+                {{form.submit(class="ui button full-width green")}}
+
+            </div>
+            <div class="ui horizontal divider">
+                Or
+            </div>
+            <div class="field">
+                <a href="{{url_for('login')}}" class='ui teal button full-width'>Login</a>
+                <!-- login function name from flaskblog.py -->
+            </div>
+        </form>
+
+    </div>
+</div>
+{% endblock content %}

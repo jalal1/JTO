@@ -1,37 +1,184 @@
+.full-width {
+    width: 100%;
+}
+
 #home-page {
+
+    .flex{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .img-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
     .ui.menu.header-menu {
         border-radius: 0;
         height: 45px;
+        background: #4a76a8;
+        border-bottom: 1px solid #4872a3;
+
+        .item:before {
+            width: unset;
+        }
+
+    }
+
+    .search {
+        padding: 12px;
+    }
+
+    .search-tag {
+        margin-bottom: 10px;
+        font-weight: 500;
     }
 
     .ui.vertical.menu.secondary-menu .item:before {
         width: 0;
     }
 
-    .secondary-menu {
-        margin-right: 40px;
-        border: none;
-        box-shadow: none;
+    .ui.vertical.menu .active.item {
+        font-weight: 500;
+        border-radius: 8px;
     }
 
-    .main-content {
-        display: flex;
-        margin-top: 54px;
+    .secondary-menu.ui.vertical.menu>.item:first-child {
+        padding: 12px 0;
+    }
 
-        .news-feed,
-        .profile-section {
-            width: 100%;
+    .ui.vertical.menu a.item:hover {
+        border-radius: 8px;
+    }
+
+    .secondary-menu {
+        border: none;
+        box-shadow: none;
+
+        .item>i {
+            float: unset;
+            margin: 0 6px 0 0;
         }
     }
 
-    .profile-section {
+    #upload {
+        padding: 5px;
+        border: 2px solid #4872a3;
+        border-radius: 4px;
+        text-transform: uppercase;
+        font-weight: 500;
+        color: #fff;
+        background-color: #4872a3;
+    }
+
+
+
+    #userimage {
+        border-radius: 4px;
+        padding: 4px;
+        margin-bottom:10px;
+
+        >input {
+            background-color: #4caf50;
+        }
+    }
+
+    .image-form {
+        h4 {
+            margin-top: 12px;
+        }
+    }
+
+    span.title {
+        font-size: 21px;
+        font-weight: 500;
+        display: block;
+        margin: 16px 0;
+    }
+
+    .prof-friends {
         display: flex;
 
-        .images-section {
-            margin-right: 40px;
+        .prof-friend {
+            margin-right: 16px;
+            text-align: center;
 
-            .albums-block {
-                margin-top: 30px;
+            .ui.image{
+                max-height: 51px;
+                max-width: 51px;
+            }
+
+            span {
+                font-weight: 400;
+                display: block;
+                margin: 8px 0;
+            }
+        }
+    }
+
+    .ui.feed .news-feed {
+        margin-bottom: 24px;
+        padding: 16px;
+    }
+
+
+
+    .profile-info {
+        span {
+            display: block;
+        }
+
+        .prof-status {
+            font-weight: 400;
+            margin: 0 0 10px;
+        }
+
+        .profile-name {
+            font-size: 19px;
+            line-height: 25px;
+            font-weight: 400;
+        }
+
+        .profile-status {
+            margin: 8px 0;
+        }
+
+        .profile-details {
+            margin-bottom: 20px;
+            display: flex;
+
+            .prof-text {
+                min-width: 165px;
+
+                span {
+                    min-height: 24px;
+                    color: #828282;
+                }
+            }
+
+            .prof-data {
+                span {
+                    min-height: 24px;
+                    color: #333;
+                }
+            }
+        }
+
+        .prof-stats {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .value {
+                font-size: 35px !important;
+                font-weight: 300;
+            }
+
+            .label {
+                font-weight: 400;
             }
         }
     }
@@ -41,21 +188,42 @@
     .main-content {
         display: flex;
 
-        & > div {
+        &>div {
             flex-basis: 100%;
         }
 
-        .website-info{
+        .website-info {
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 34px 50px 50px;
         }
-        .login-section{
+
+        .login-section {
             padding: 34px 50px 50px;
         }
     }
-    .ui.stacked.segment:after, .ui.stacked.segment:before, .ui.stacked.segments:after, .ui.stacked.segments:before{
+
+    .ui.stacked.segment:after,
+    .ui.stacked.segment:before,
+    .ui.stacked.segments:after,
+    .ui.stacked.segments:before {
         height: 4px;
     }
+
+
+}
+
+#sign-page {
+    .login-form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 100px 20px;
+
+        form {
+            width: 350px;
+        }
+    }
+
 }

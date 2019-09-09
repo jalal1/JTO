@@ -5,10 +5,11 @@
 !.elasticbeanstalk/*.global.yml
 
 /env/*
-
+migrations/
 
 *.pyc
 __pycache__/
 .vscode/
 
 .env
+migration.sql
