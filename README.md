@@ -47,7 +47,9 @@ No tests yet!
 
 To deploy to AWS : 
 1- eb init
+
 2- eb creat [app-name] ( needed for each branch)
+
 3- eb deploy [jtoname] : example eb deploy jto11 ( should be more than 4)
 
 To terminate and delete all created resources : 
