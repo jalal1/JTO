@@ -9,7 +9,9 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 1- Clone the repo.
+
 2- Install PostgresSQL server or if you have a server runining online, then you need the connection URL.
+
 3- If you are using Visual studio code, then better to create a virtual enviroment as below : 
     A- Create new python enviroment : "python -m venv env" ( for python 3 and above, virtualenv will be installed) (http://flask.pocoo.org/docs/1.0/installation/)
     B- Active the enviroment : go to "env/Scripts/" and run "activate.bat" or when start debugging using Visual Studio code.)
@@ -17,6 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Installing
 
 1- Activate the virtual enviroment. See above 3-A
+
 2- Install requirements
 
 ```
@@ -33,6 +36,7 @@ pip install -r requirements.txt
         - python manage.py db upgrade --sql > migration.sql
 
 4- "Flask run" to start the project. 
+
 5- Click on "Create new account" and enjoy!! ^_^
 
 ## Running the tests
