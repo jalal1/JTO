@@ -46,6 +46,7 @@ No tests yet!
 ## Deployment
 
 To deploy to AWS : 
+
 1- eb init
 
 2- eb creat [app-name] ( needed for each branch)
