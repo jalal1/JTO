@@ -71,7 +71,7 @@ To terminate and delete all created resources :
 
 ## Authors
 
-* **Jalal Khalil**
+* **Jalal Khalil (jalalk@uab.edu)**
 * **Orhun Vural**
 * **Temirlan Ismukhanov**
 
