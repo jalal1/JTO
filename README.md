@@ -64,11 +64,6 @@ To terminate and delete all created resources :
 * [SQLAlchemy](https://www.sqlalchemy.org/)
 * [PostgreSQL](https://www.postgresql.org/)
 
-## Contributing
-
----
-
-
 ## Authors
 
 * **Jalal Khalil (jalalk@uab.edu)**
