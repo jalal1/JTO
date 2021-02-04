@@ -74,11 +74,3 @@ To terminate and delete all created resources :
 * **Jalal Khalil (jalalk@uab.edu)**
 * **Orhun Vural**
 * **Temirlan Ismukhanov**
-
-
-See also the list of [contributors](https://github.com/jalal1/JTO/project/contributors/project/contributors) who participated in this project.
-
-## License
-
----
-
